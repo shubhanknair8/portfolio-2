@@ -7,19 +7,17 @@ import { todo, type CaseStudy } from "../types";
 export const yatrasure: CaseStudy = {
   slug: "yatrasure",
   title: "YatraSure",
-  outcomeLine: todo(
-    'One-line outcome, e.g. "A motor insurance app that turns a 15-step process into a calm 8-step one"'
-  ),
+  outcomeLine: "A mobile motor insurance app that makes buying and renewing feel clear and trustworthy.",
 
-  cardLine: "Motor insurance mobile app",
+  cardLine: "Motor insurance app, prototype tested with 20 users",
   meta: {
-    role: todo("Your exact contribution"),
-    team: todo("Solo, or who else"),
+    role: "Sole designer on this internship project: research, journey mapping, wireframes, UI design and prototype testing.",
+    team: "Solo internship project",
     timeline: "3 months",
-    year: todo("Year"),
+    year: "2024",
     platform: "Mobile (iOS and Android)",
-    tools: todo("Tools"),
-    status: todo("Prototype tested with X users / Concept"),
+    tools: "Figma, Framer, Miro, Notion, Maze, Claude, ChatGPT, Midjourney",
+    status: "Prototype tested with 20 users (not live)",
   },
 
   // Short labels only — the flow strip never wraps mid-word and scrolls on small screens.
@@ -89,7 +87,8 @@ export const yatrasure: CaseStudy = {
       ],
     },
     {
-      title: todo("Third decision, e.g. IDV explainer"),
+      title: "Renewal-first home screen with a one-tap Renew policy",
+      detail: "Returning users see their policy status, such as Expired, and a Renew policy button on the home screen, so renewing does not require navigation.",
       rejected: [{ option: todo("Option considered"), why: todo("Why rejected") }],
     },
     {
@@ -99,12 +98,12 @@ export const yatrasure: CaseStudy = {
   ],
 
   screens: [
-    { label: "Home and dashboard", alt: "YatraSure home and dashboard screen", caption: todo("Why this screen is built this way") },
-    { label: "Vehicle details and plans", alt: "YatraSure vehicle details and plan selection screen", caption: todo("Why this screen is built this way") },
-    { label: "Add-ons", alt: "YatraSure add-ons screen", caption: todo("Why this screen is built this way") },
-    { label: "KYC", alt: "YatraSure KYC screen", caption: todo("Why this screen is built this way") },
-    { label: "Payment", alt: "YatraSure payment screen", caption: todo("Why this screen is built this way") },
-    { label: "Success", alt: "YatraSure policy issued screen", caption: todo("Why this screen is built this way") },
+    { label: "Home and dashboard", alt: "YatraSure home and dashboard screen", caption: "Renewal is the most common return task, so it should not take navigation." },
+    { label: "Vehicle details and plans", alt: "YatraSure vehicle details and plan selection screen", caption: "Entering only the registration number removes the highest-effort step at the start of the flow." },
+    { label: "Add-ons", alt: "YatraSure add-ons screen", caption: "Guided choice reduces both over-buying and abandoning." },
+    { label: "KYC", alt: "YatraSure KYC screen", caption: "Users see what they are buying while they verify, and consent is visible, not buried." },
+    { label: "Payment", alt: "YatraSure payment screen", caption: "A failed payment is the most anxious moment in the journey, so retry keeps what was entered." },
+    { label: "Success", alt: "YatraSure policy issued screen", caption: "Clear confirmation and an instant download end the anxiety loop and reduce the need to contact support." },
   ],
 
   // No real test data yet, so this renders as "What I validated".
@@ -114,12 +113,15 @@ export const yatrasure: CaseStudy = {
   outcome: {
     kind: "validated",
     items: [
-      "Usability tests showed the guided mobile flows, with progressive disclosure, improved policy comprehension.",
-      todo("Test details (real data only): users tested, completion without help, time"),
+      "Prototype tested with 20 users.",
+      todo("Findings from the 20-user test: task success, time, and what confused people (Maze results or notes)"),
     ],
   },
 
-  whatIdChange: [todo("What I'd change #1"), todo("What I'd change #2")],
+  whatIdChange: [
+    "The app is not live, so I could not measure real completion or drop-off. With a live build I would set baseline metrics first, then compare after launch.",
+    todo("What I'd change #2"),
+  ],
 
   next: { slug: "my-haven", title: "My Haven" },
 };
