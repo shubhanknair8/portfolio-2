@@ -57,13 +57,13 @@ export function WorkCard({ item, index }: { item: Work; index: number }) {
 
   if (item.slug)
     return wrap(
-      <Link href={`/work/${item.slug}`} className="card card--work" style={style} aria-label={`${item.title} — case study`}>
+      <Link href={`/work/${item.slug}`} className="card card--work" style={style} aria-label={`${item.title}, case study`}>
         {tile}
       </Link>
     );
   if (item.href)
     return (
-      <a href={item.href} target="_blank" rel="noopener" className="card card--work" style={style} aria-label={`${item.title} — opens ${item.href}`}>
+      <a href={item.href} target="_blank" rel="noopener" className="card card--work" style={style} aria-label={`${item.title}, opens ${item.href}`}>
         {tile}
       </a>
     );

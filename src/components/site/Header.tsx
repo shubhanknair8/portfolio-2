@@ -48,7 +48,7 @@ export function Header() {
     <header className="header">
       <div className="wrap">
         <div className="header__bar">
-          <Link href="/" className="header__logo t-logo" aria-label={`${site.name} — home`}>
+          <Link href="/" className="header__logo t-logo" aria-label={`${site.name}, home`}>
             {site.logo}
           </Link>
           <Clock />

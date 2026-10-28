@@ -1,4 +1,4 @@
-# iprashant.com — portfolio
+# Shubhank Nair, portfolio
 
 Next.js 14 (App Router) + Tailwind. Copy lives in typed data files; components only render it.
 

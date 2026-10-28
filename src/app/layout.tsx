@@ -8,9 +8,20 @@ const display = Syne({ subsets: ["latin"], weight: ["600", "700", "800"], variab
 const body = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-body", display: "swap" });
 
 export const metadata: Metadata = {
-  title: { default: "Shubhank Nair — UI/UX & Product Designer", template: "%s · Shubhank Nair" },
+  metadataBase: new URL(
+    process.env.NEXT_PUBLIC_SITE_URL ??
+      (process.env.VERCEL_PROJECT_PRODUCTION_URL ? `https://${process.env.VERCEL_PROJECT_PRODUCTION_URL}` : "http://localhost:3000"),
+  ),
+  title: { default: "Shubhank Nair | UI/UX & Product Designer", template: "%s · Shubhank Nair" },
   description:
     "UI/UX and Product Designer across AI, BFSI, fashion-tech, insurance, mental health and sports-tech. Based in Delhi, India.",
+  openGraph: {
+    type: "website",
+    siteName: "Shubhank Nair",
+    title: "Shubhank Nair | UI/UX & Product Designer",
+    description:
+      "UI/UX and Product Designer across AI, BFSI, fashion-tech, insurance, mental health and sports-tech. Based in Delhi, India.",
+  },
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {

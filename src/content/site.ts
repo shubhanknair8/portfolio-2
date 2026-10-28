@@ -11,7 +11,7 @@ export const site = {
   portrait: undefined as string | undefined, // e.g. "/images/portrait.jpg" (rendered grayscale)
   available: true,
   newestNote: "Recent work across AI, insurance and mental health." as Text,
-  featuredIntro: "Products for AI, insurance, mental health, ed-tech and sports accessibility — researched, tested and designed to ship." as Text,
+  featuredIntro: "Products for AI, insurance, mental health, ed-tech and sports accessibility, researched, tested and designed to ship." as Text,
   socials: [
     { label: "LinkedIn", href: "https://linkedin.com/in/shubhanknair" },
     { label: "Framer site", href: "https://shubhanknair.framer.website" },
