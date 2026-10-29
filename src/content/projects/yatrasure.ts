@@ -9,15 +9,15 @@ export const yatrasure: CaseStudy = {
   title: "YatraSure",
   outcomeLine: "A mobile motor insurance app that makes buying and renewing feel clear and trustworthy.",
 
-  cardLine: "Motor insurance app, prototype tested with 20 users",
+  cardLine: "Motor insurance app concept, mobile prototype",
   meta: {
-    role: "Sole designer on this internship project: research, journey mapping, wireframes, UI design and prototype testing.",
+    role: "Sole designer on this internship project: research, journey mapping, wireframes, UI design and prototyping.",
     team: "Solo internship project",
     timeline: "3 months",
     year: "2024",
     platform: "Mobile (iOS and Android)",
     tools: "Figma, Framer, Miro, Notion, Maze, Claude, ChatGPT, Midjourney",
-    status: "Prototype tested with 20 users (not live)",
+    status: "Concept prototype (not live)",
   },
 
   // Short labels only — the flow strip never wraps mid-word and scrolls on small screens.
@@ -113,14 +113,14 @@ export const yatrasure: CaseStudy = {
   outcome: {
     kind: "validated",
     items: [
-      "Prototype tested with 20 users.",
-      todo("Findings from the 20-user test: task success, time, and what confused people (Maze results or notes)"),
+      "Not yet tested with real users. The design decisions follow the pain points from my research.",
+      "Next step: a 5-person usability test on the prototype with three tasks: renew a policy, buy a plan with add-ons, and recover from a failed payment.",
     ],
   },
 
   whatIdChange: [
     "The app is not live, so I could not measure real completion or drop-off. With a live build I would set baseline metrics first, then compare after launch.",
-    todo("What I'd change #2"),
+    "I would test the prototype with 5 to 8 drivers before finalising the UI, especially the add-on explanations and the KYC step.",
   ],
 
   next: { slug: "my-haven", title: "My Haven" },

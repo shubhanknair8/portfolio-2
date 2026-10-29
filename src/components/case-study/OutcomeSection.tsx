@@ -13,7 +13,7 @@ export function OutcomeSection({ outcome }: { outcome: Outcome }) {
       <section className="cs-row halves" aria-labelledby="validated-h">
         <div className="cs-row__main">
           <h2 id="validated-h" className="t-h2s">
-            What I validated
+            Validation status
           </h2>
           <ol className="list">
             {outcome.items.map((item, i) => (
