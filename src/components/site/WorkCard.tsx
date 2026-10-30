@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { CSSProperties, ReactNode } from "react";
+import type { CSSProperties } from "react";
 import type { Work } from "@/content/cv";
 import { getProject } from "@/content/projects";
 import { TodoMark } from "../Rich";
@@ -12,7 +12,7 @@ import { Kebab, PixelArrow } from "./bits";
  */
 export function WorkCard({ item, index }: { item: Work; index: number }) {
   const study = item.slug ? getProject(item.slug) : undefined;
-  const cover = study?.cover;
+  const cover = study?.cover ?? item.cover;
   const sketch = study?.sketch;
 
   const tile = (
@@ -53,10 +53,8 @@ export function WorkCard({ item, index }: { item: Work; index: number }) {
   );
 
   const style = { "--i": index % 2 } as CSSProperties;
-  const wrap = (node: ReactNode) => node;
-
   if (item.slug)
-    return wrap(
+    return (
       <Link href={`/work/${item.slug}`} className="card card--work" style={style} aria-label={`${item.title}, case study`}>
         {tile}
       </Link>

@@ -5,12 +5,12 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        paper: "#FAFAFA",
-        hero: "#EBEBEB",
-        ink: "#050505",
-        gray: "#808080",
-        line: "#DBDBDB",
-        todo: "#B4532A",
+        paper: "#F4F1EA",
+        hero: "#E9E4D8",
+        ink: "#1C1B19",
+        gray: "#625D55",
+        line: "#D9D3C5",
+        todo: "#9E4520",
       },
       fontFamily: {
         display: ["var(--font-display)", "sans-serif"],

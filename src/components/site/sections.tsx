@@ -1,7 +1,7 @@
 import type { CSSProperties } from "react";
 import { certifications, education, experience, languages, services, tools } from "@/content/cv";
 import { Eyebrow } from "./bits";
-import { Reveal, SplitText } from "../motion";
+import { MarqueePause, Reveal, SplitText } from "../motion";
 
 export function SectionHead({ index, eyebrow, title, intro }: { index?: number; eyebrow: string; title: string; intro?: string }) {
   return (
@@ -93,6 +93,7 @@ export function Toolkit() {
       </p>
       <MarqueeRow items={tools.design} />
       <MarqueeRow items={tools.ai} reverse />
+      <MarqueePause />
     </div>
   );
 }

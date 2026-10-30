@@ -18,7 +18,7 @@ npm run build        # runs the content check first
 
 ## Rules the template enforces
 
-- **Outcome heading follows content.** `outcome.kind: "validated"` renders "What I validated";
+- **Outcome heading follows content.** `outcome.kind: "validated"` renders "Validation status";
   `kind: "results"` renders "Outcome" with 1–3 cards (the type allows no more), each with a required `source`.
 - **No testimonial without consent.** Quotes need `name` and `consent: true`; anything else is dropped.
 - **Flow labels never wrap.** Short labels, `whitespace-nowrap` (also blocks the hyphen break in "Add-ons"), horizontal scroll on small screens.

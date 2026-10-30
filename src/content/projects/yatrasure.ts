@@ -9,15 +9,15 @@ export const yatrasure: CaseStudy = {
   title: "YatraSure",
   outcomeLine: "A mobile motor insurance app that makes buying and renewing feel clear and trustworthy.",
 
-  cardLine: "Motor insurance app concept, mobile prototype",
+  cardLine: "Motor insurance app, personal project",
   meta: {
-    role: "Sole designer on this internship project: research, journey mapping, wireframes, UI design and prototyping.",
-    team: "Solo internship project",
+    role: "Sole designer: research, journey mapping, wireframes, UI design and prototyping.",
+    team: "Solo, personal project",
     timeline: "3 months",
     year: "2024",
     platform: "Mobile (iOS and Android)",
     tools: "Figma, Framer, Miro, Notion, Maze, Claude, ChatGPT, Midjourney",
-    status: "Concept prototype (not live)",
+    status: "Personal project (not live)",
   },
 
   // Short labels only — the flow strip never wraps mid-word and scrolls on small screens.
@@ -56,7 +56,7 @@ export const yatrasure: CaseStudy = {
         decision: "Consent, trust cues and a retry flow.",
       },
     ],
-    stats: todo("Stats — show only if sourced"),
+    stats: todo("Stats: show only if sourced"),
     persona: {
       name: "Rajeev Mehta",
       age: 35,
@@ -113,8 +113,7 @@ export const yatrasure: CaseStudy = {
   outcome: {
     kind: "validated",
     items: [
-      "Not yet tested with real users. The design decisions follow the pain points from my research.",
-      "Next step: a 5-person usability test on the prototype with three tasks: renew a policy, buy a plan with add-ons, and recover from a failed payment.",
+      "This is a personal project, not a live product. The design decisions follow the pain points from my research.",
     ],
   },
 

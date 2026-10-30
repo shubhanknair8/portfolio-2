@@ -8,9 +8,9 @@ const walk = (d) => readdirSync(d).flatMap((f) => (statSync(join(d, f)).isDirect
 for (const file of walk("src").filter((f) => /\.(tsx?|mdx?)$/.test(f))) {
   const src = readFileSync(file, "utf8");
   src.split("\n").forEach((line, i) => {
-    // Spelling: always "Aadhaar"
-    if (/aadhar(?!a)|adhaar|adhar/i.test(line) || /aadhaar/.test(line) && !/Aadhaar/.test(line))
-      errors.push(`${file}:${i + 1} spell it "Aadhaar"`);
+    // Spelling: always "Aadhaar". Catches Aadhar, Adhaar, Adhar, aadhaar, AADHAR, etc.
+    for (const word of line.match(/\ba{1,2}dh{1,2}a{1,2}r\b/gi) ?? [])
+      if (word !== "Aadhaar") errors.push(`${file}:${i + 1} "${word}": spell it "Aadhaar"`);
   });
 }
 

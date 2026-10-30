@@ -249,7 +249,7 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
           <ul className="list">
             {study.whatIdChange.map((t, i) => (
               <li key={i} className="list__item">
-                <span className="list__num">—</span>
+                <span className="list__num" aria-hidden>·</span>
                 <span>
                   <Rich value={t} />
                 </span>

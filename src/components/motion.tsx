@@ -42,10 +42,10 @@ export function Reveal({
   return createElement(
     as,
     {
+      ...rest,
       ref,
       className: `rv ${inView ? "is-in" : ""} ${className}`,
       style: { "--d": `${delay}ms`, ...(rest.style as CSSProperties) } as CSSProperties,
-      ...rest,
     },
     children
   );
@@ -101,12 +101,15 @@ export function ScrollInk({ text, className = "" }: { text: string; className?: 
   const words = text.split(" ");
   const lit = Math.round(progress * words.length);
   return (
-    <p ref={ref} className={`ink ${className}`} aria-label={text}>
-      {words.map((w, i) => (
-        <span key={i} aria-hidden className={i < lit ? "ink__on" : undefined}>
-          {w}{" "}
-        </span>
-      ))}
+    <p ref={ref} className={`ink ${className}`}>
+      <span className="sr-only">{text}</span>
+      <span aria-hidden>
+        {words.map((w, i) => (
+          <span key={i} className={i < lit ? "ink__on" : undefined}>
+            {w}{" "}
+          </span>
+        ))}
+      </span>
     </p>
   );
 }
@@ -133,11 +136,27 @@ export function CountUp({ value, suffix = "" }: { value: number; suffix?: string
     return () => cancelAnimationFrame(raf);
   }, [inView, value]);
   return (
-    <span ref={ref} aria-label={`${value}${suffix}`}>
+    <span ref={ref}>
+      <span className="sr-only">{`${value}${suffix}`}</span>
       <span aria-hidden>
         {n}
         {suffix}
       </span>
     </span>
+  );
+}
+
+/** Pause/play for the toolkit marquee (WCAG 2.2.2: moving content needs a stop control). */
+export function MarqueePause() {
+  const [paused, setPaused] = useState(false);
+  const ref = useRef<HTMLButtonElement>(null);
+  useEffect(() => {
+    const box = ref.current?.closest(".toolkit");
+    if (box) paused ? box.setAttribute("data-paused", "") : box.removeAttribute("data-paused");
+  }, [paused]);
+  return (
+    <button ref={ref} type="button" className="toolkit__pause" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
+      {paused ? "Play animation" : "Pause animation"}
+    </button>
   );
 }

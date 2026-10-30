@@ -20,6 +20,8 @@ export type Work = {
   /** External link, if one exists. */
   href?: string;
   live?: boolean;
+  /** Card image for projects without a case study. Path under /public. */
+  cover?: string;
   points: string[];
 };
 
@@ -74,11 +76,11 @@ export const experience: Role[] = [
 export const work: Work[] = [
   {
     title: "YatraSure",
-    kind: "Motor insurance mobile app",
+    kind: "Motor insurance app, personal project",
     slug: "yatrasure",
     points: [
       "Ran interviews and benchmarking to find friction in insurance purchase and renewal journeys.",
-      "Designed guided mobile flows with progressive disclosure, improving policy comprehension in usability tests.",
+      "Designed guided mobile flows with progressive disclosure so policy terms are easier to understand.",
     ],
   },
   {
@@ -97,6 +99,14 @@ export const work: Work[] = [
     points: [
       "Designed the web experience for a platform that takes fashion designers from sketch to production-ready tech packs.",
       "Structured guided workflows so designers keep creative control while AI handles repetitive steps.",
+    ],
+  },
+  {
+    title: "Anuvadini AI",
+    kind: "AICTE multilingual AI platform",
+    points: [
+      "Designing accessibility-first, multi-script interfaces for AICTE’s multilingual AI platform.",
+      "Turning AI behaviour (loading, low-confidence results, errors) into clear interface states.",
     ],
   },
   {
