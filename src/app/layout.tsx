@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Syne, Inter } from "next/font/google";
+import { Inter } from "next/font/google";
 import { Header } from "@/components/site/Header";
 import { Footer } from "@/components/Footer";
 import "./globals.css";
@@ -8,7 +8,7 @@ import "./stack.css";
 import "./casestudy.css";
 import "./contact.css";
 
-const display = Syne({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--font-display", display: "swap" });
+const display = Inter({ subsets: ["latin"], weight: ["600", "700", "800"], variable: "--font-display", display: "swap" });
 const body = Inter({ subsets: ["latin"], weight: ["400", "500"], variable: "--font-body", display: "swap" });
 
 export const metadata: Metadata = {
