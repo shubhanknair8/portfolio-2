@@ -16,8 +16,9 @@ for (const file of walk("src").filter((f) => /\.(tsx?|mdx?)$/.test(f))) {
 
 for (const file of walk("src/content/projects").filter((f) => f.endsWith(".ts") && !f.endsWith("index.ts"))) {
   const src = readFileSync(file, "utf8");
-  // Every outcome card must carry a source
-  const cards = src.match(/\{\s*value:[^}]*\}/g) ?? [];
+  // Every outcome card (inside an outcome `cards: [...]` list) must carry a source
+  const blocks = src.match(/cards:\s*\[[\s\S]*?\n\s*\]/g) ?? [];
+  const cards = blocks.flatMap((b) => b.match(/\{\s*value:[^}]*\}/g) ?? []);
   for (const c of cards) if (!/source:\s*["'`][^"'`]+/.test(c)) errors.push(`${file}: outcome card without a source`);
 }
 

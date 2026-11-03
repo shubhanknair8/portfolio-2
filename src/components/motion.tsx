@@ -146,17 +146,139 @@ export function CountUp({ value, suffix = "" }: { value: number; suffix?: string
   );
 }
 
-/** Pause/play for the toolkit marquee (WCAG 2.2.2: moving content needs a stop control). */
-export function MarqueePause() {
-  const [paused, setPaused] = useState(false);
-  const ref = useRef<HTMLButtonElement>(null);
+/* ------------------------------------------------------------------
+   Site-wide motion switch (WCAG 2.2.2). Sets html[data-motion="off"],
+   which pauses marquees (CSS) and the rotating hero word (JS).
+   ------------------------------------------------------------------ */
+const MOTION_EVENT = "motionchange";
+const motionOff = () =>
+  typeof document !== "undefined" &&
+  (document.documentElement.dataset.motion === "off" || window.matchMedia("(prefers-reduced-motion: reduce)").matches);
+
+export function MotionToggle({ className = "" }: { className?: string }) {
+  const [off, setOff] = useState(false);
   useEffect(() => {
-    const box = ref.current?.closest(".toolkit");
-    if (box) paused ? box.setAttribute("data-paused", "") : box.removeAttribute("data-paused");
-  }, [paused]);
+    try {
+      if (localStorage.getItem("motion") === "off") setOff(true);
+    } catch {}
+  }, []);
+  useEffect(() => {
+    document.documentElement.dataset.motion = off ? "off" : "on";
+    try {
+      localStorage.setItem("motion", off ? "off" : "on");
+    } catch {}
+    window.dispatchEvent(new Event(MOTION_EVENT));
+  }, [off]);
   return (
-    <button ref={ref} type="button" className="toolkit__pause" aria-pressed={paused} onClick={() => setPaused((p) => !p)}>
-      {paused ? "Play animation" : "Pause animation"}
+    <button type="button" className={`motion-toggle ${className}`} aria-pressed={off} onClick={() => setOff((v) => !v)}>
+      <span aria-hidden className="motion-toggle__icon">{off ? "▶" : "❚❚"}</span>
+      {off ? "Play motion" : "Pause motion"}
     </button>
+  );
+}
+
+/** True while motion is allowed; re-checks when the site toggle changes. */
+function useMotionOn() {
+  const [on, setOn] = useState(false);
+  useEffect(() => {
+    const sync = () => setOn(!motionOff());
+    sync();
+    window.addEventListener(MOTION_EVENT, sync);
+    return () => window.removeEventListener(MOTION_EVENT, sync);
+  }, []);
+  return on;
+}
+
+/**
+ * Typewriter word for the hero: types "Convert", holds ~2s, deletes it,
+ * then types the next word in its own colour. Shows the first word, still, when motion is off.
+ */
+export function RotatingWord({ words, hold = 2000 }: { words: { word: string; color: string }[]; hold?: number }) {
+  const on = useMotionOn();
+  const [i, setI] = useState(0);
+  const [len, setLen] = useState(words[0].word.length);
+  const [phase, setPhase] = useState<"hold" | "delete" | "type">("hold");
+
+  useEffect(() => {
+    if (!on) {
+      setI(0);
+      setLen(words[0].word.length);
+      setPhase("hold");
+      return;
+    }
+    const word = words[i].word;
+    let t: ReturnType<typeof setTimeout>;
+    if (phase === "hold") t = setTimeout(() => setPhase("delete"), hold);
+    else if (phase === "delete")
+      t =
+        len > 0
+          ? setTimeout(() => setLen((n) => n - 1), 55)
+          : setTimeout(() => {
+              setI((n) => (n + 1) % words.length);
+              setPhase("type");
+            }, 250);
+    else
+      t =
+        len < word.length
+          ? setTimeout(() => setLen((n) => n + 1), 95)
+          : setTimeout(() => setPhase("hold"), 0);
+    return () => clearTimeout(t);
+  }, [on, i, len, phase, hold, words]);
+
+  const w = words[i];
+  return (
+    <span className="rotator" aria-hidden>
+      <span className="rotator__word" style={{ color: w.color }}>
+        {w.word.slice(0, len)}
+      </span>
+      <span className={`rotator__caret ${phase === "hold" ? "is-blinking" : ""}`} style={{ background: w.color }} />
+    </span>
+  );
+}
+
+/** Word that swaps with a soft blur every few seconds (footer "Let's design / shape / build"). */
+export function SwapWord({ words, interval = 2600 }: { words: string[]; interval?: number }) {
+  const on = useMotionOn();
+  const [i, setI] = useState(0);
+  useEffect(() => {
+    if (!on) return setI(0);
+    const id = setInterval(() => setI((n) => (n + 1) % words.length), interval);
+    return () => clearInterval(id);
+  }, [on, interval, words.length]);
+  return (
+    <span className="swap" aria-hidden>
+      <span key={words[i]} className="swap__word">
+        {words[i]}
+      </span>
+    </span>
+  );
+}
+
+/** Counts 1 -> value on view, then quietly holds. Used inside the bento. */
+export function TickUp({ value, suffix = "" }: { value: number; suffix?: string }) {
+  const [ref, inView] = useInView<HTMLSpanElement>();
+  const on = useMotionOn();
+  const [n, setN] = useState(value);
+  const done = useRef(false);
+  useEffect(() => {
+    if (!inView || !on || done.current) return;
+    done.current = true;
+    let k = 1;
+    setN(1);
+    const id = setInterval(() => {
+      k += 1;
+      setN(Math.min(k, value));
+      if (k >= value) clearInterval(id);
+    }, Math.max(120, 900 / value));
+    return () => clearInterval(id);
+  }, [inView, on, value]);
+  return (
+    <span ref={ref}>
+      <span className="sr-only">{`${value}${suffix}`}</span>
+      <span aria-hidden>
+        {n}
+        {suffix}
+      </span>
+    </span>
   );
 }

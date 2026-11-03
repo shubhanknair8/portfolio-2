@@ -219,7 +219,7 @@ a { color: inherit; text-decoration: none; }
   background: var(--media); color: var(--todo-on-dark); overflow: hidden; position: relative;
 }
 .slot img { width: 100%; height: 100%; object-fit: cover; }
-.slot--portrait img { filter: grayscale(1); }
+.slot--portrait img { filter: none; object-position: center 20%; }
 .slot .todo { color: var(--todo-on-dark); border-color: rgba(224, 138, 94, 0.6); background: rgba(224, 138, 94, 0.08); }
 
 /* ------------------------------------------------------------------

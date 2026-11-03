@@ -20,8 +20,14 @@ export type Work = {
   /** External link, if one exists. */
   href?: string;
   live?: boolean;
-  /** Card image for projects without a case study. Path under /public. */
+  /** Shown in the home page stack (max 3). The rest are on /work. */
+  featured?: boolean;
+  /** Short labels shown as chips and on the scrolling ribbons. */
+  tags?: string[];
+  /** Home page card image (UI screens). Case studies use the project cover. Path under /public. */
   cover?: string;
+  /** Photo + logo image for the Work page grid. Path under /public. */
+  tile?: string;
   points: string[];
 };
 
@@ -75,63 +81,80 @@ export const experience: Role[] = [
 
 export const work: Work[] = [
   {
+    title: "Hyped Messenger",
+    featured: true,
+    live: true,
+    slug: "anuvadini-ai",
+    cover: "/images/hyped/cover-v4.jpg",
+    tile: "/images/hyped/cover-square.jpg",
+    kind: "Indian messaging app by Anuvadini AI (AICTE)",
+    tags: ["Messaging", "Mobile app", "AICTE"],
+    points: [
+      "Designing product flows and screens for a homegrown Indian messenger, live on Android and iOS.",
+      "Fitting chats, calls, SOS, games and multilingual tools into a navigation that stays simple.",
+    ],
+  },
+  {
+    title: "The F* Word AI",
+    featured: true,
+    live: true,
+    slug: "the-f-word-ai",
+    cover: "/images/the-f-word-ai/cover-v3.jpg",
+    tile: "/images/the-f-word-ai/cover-square.jpg",
+    kind: "AI fashion product development platform",
+    tags: ["AI", "Fashion-tech", "Web"],
+    href: "https://thefword.ai",
+    points: [
+      "Owned the tech pack experience: AI-drafted, editable specs (BOM, measurements, grading) ready for factory hand-off.",
+      "Structured guided workflows so designers keep creative control while AI handles repetitive steps.",
+    ],
+  },
+  {
     title: "YatraSure",
-    kind: "Motor insurance app, personal project",
+    featured: true,
     slug: "yatrasure",
+    cover: "/images/yatrasure/cover-v2.jpg",
+    tile: "/images/yatrasure/cover-square.jpg",
+    kind: "Motor insurance app, personal project",
+    tags: ["Insurance", "Mobile app", "Personal project"],
     points: [
       "Ran interviews and benchmarking to find friction in insurance purchase and renewal journeys.",
       "Designed guided mobile flows with progressive disclosure so policy terms are easier to understand.",
     ],
   },
   {
-    title: "My Haven",
-    kind: "Mental health support app",
-    slug: "my-haven",
+    title: "PurePick",
+    slug: "purepick",
+    cover: "/images/purepick/cover-v2.jpg",
+    tile: "/images/purepick/cover-square.jpg",
+    kind: "Fruit safety scanning app concept",
+    tags: ["Food safety", "AI", "Mobile app"],
     points: [
-      "Ran interviews and empathy mapping across age groups to shape a calm, trust-building visual language.",
-      "Validated through usability testing and met WCAG 2.1 AA accessibility standards.",
-    ],
-  },
-  {
-    title: "The F* Word AI",
-    kind: "AI fashion product development platform",
-    href: "https://thefword.ai",
-    points: [
-      "Designed the web experience for a platform that takes fashion designers from sketch to production-ready tech packs.",
-      "Structured guided workflows so designers keep creative control while AI handles repetitive steps.",
-    ],
-  },
-  {
-    title: "Anuvadini AI",
-    kind: "AICTE multilingual AI platform",
-    points: [
-      "Designing accessibility-first, multi-script interfaces for AICTE’s multilingual AI platform.",
-      "Turning AI behaviour (loading, low-confidence results, errors) into clear interface states.",
-    ],
-  },
-  {
-    title: "Hyped Messenger",
-    kind: "AICTE messaging app",
-    live: true,
-    points: [
-      "Product designer on a homegrown alternative to WhatsApp, now live.",
-      "Owned user flows and managed design timelines alongside development.",
-    ],
-  },
-  {
-    title: "Topper",
-    kind: "AICTE ed-tech learning platform",
-    points: [
-      "Designing a web platform for live tuitions and study material, from school level to exams like SSC CGL, then extending it to mobile.",
-      "Shaping one stage for all learners, so every level and exam goal is served in one place.",
+      "Designed a camera-first app that tells shoppers in seconds whether fruit is safe, caution or unsafe.",
+      "Built trust through confidence levels, plain-language explanations and safer alternatives.",
     ],
   },
   {
     title: "PlayZone",
-    kind: "Sports accessibility platform",
+    slug: "playzone",
+    cover: "/images/playzone/cover-v2.jpg",
+    tile: "/images/playzone/cover-square.jpg",
+    kind: "Sports facility booking and community app",
+    tags: ["Sports", "Booking", "Community"],
     points: [
-      "Interviewed differently-abled participants to understand barriers to discovering and booking sports facilities.",
+      "Designed a mobile app to discover sports facilities, book live slots and find people to play with.",
       "Built personas and journey maps, and led ideation workshops to shape an inclusive feature set.",
+    ],
+  },
+  {
+    title: "My Haven",
+    slug: "my-haven",
+    tile: "/images/my-haven/cover-square.jpg",
+    kind: "Mental health support app",
+    tags: ["Mental health", "Accessibility"],
+    points: [
+      "Ran interviews and empathy mapping across age groups to shape a calm, trust-building visual language.",
+      "Validated through usability testing and met WCAG 2.1 AA accessibility standards.",
     ],
   },
 ];
@@ -149,15 +172,27 @@ export const services = [
 ];
 
 export const tools = {
-  design: ["Figma", "FigJam", "Adobe Illustrator", "Maze"],
-  ai: ["Google Stitch", "Uizard", "Page Flows", "Figma Make", "Framer AI", "Midjourney", "ChatGPT", "Claude"],
+  design: ["Figma", "FigJam", "Adobe Illustrator", "Maze", "Framer", "Miro", "Notion", "Page Flows"],
+  // Check these are all tools you really use; delete any you don't.
+  ai: ["Google Stitch", "Uizard", "Figma Make", "Framer AI", "ChatGPT", "Claude", "Midjourney", "Gemini", "Perplexity", "Relume", "v0"],
 };
 
-export const certifications = [
-  { title: "Material Design", by: "Google" },
+/** In display order: the first 4 show, the rest sit in the dropdown. Add `by: "Issuer"` to show who issued it. */
+export const certifications: { title: string; by?: string }[] = [
+  { title: "Using AI for UX Design and Research" },
+  { title: "IBM SkillsBuild" },
+  { title: "Product Designer Fellowship" },
+  { title: "Learning ServiceNow (Next Experience UI)" },
+  { title: "Material Design 3 for Beginners: Building UI Systems" },
+  { title: "ChatGPT for Beginners: Using AI for Market Research" },
   { title: "The AI-Driven Product Designer" },
+  { title: "What Is the Metaverse?" },
   { title: "Customer Journey Mapping with Generative AI" },
-  { title: "Enterprise Design Thinking Practitioner" },
+  { title: "How Blockchains Will Change Business" },
+  { title: "Evil by Design: Persuasion in UX" },
+  { title: "Critical Thinking and Problem Solving" },
+  { title: "UI UX Jump Starter Course" },
+  { title: "Microsoft Excel 2013 Certification" },
 ];
 
 export const education = [

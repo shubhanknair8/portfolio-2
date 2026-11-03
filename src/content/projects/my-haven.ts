@@ -4,6 +4,8 @@ import { todo, type CaseStudy } from "../types";
 export const myHaven: CaseStudy = {
   slug: "my-haven",
   title: "My Haven",
+  ready: false,
+  cover: "/images/my-haven/cover-photo-v2.jpg",
   outcomeLine: todo("One-line outcome"),
   cardLine: "Mental health support app",
   meta: {
@@ -18,7 +20,7 @@ export const myHaven: CaseStudy = {
   problem: [todo("Problem")],
   goals: [todo("Goals")],
   constraints: todo("Constraints"),
-  research: { method: "Interviews and empathy mapping across age groups.", insights: [], stats: todo("Stats: only if sourced") },
+  research: { method: "Interviews and empathy mapping across age groups.", insights: [], stats: "" },
   principle: "A calm, trust-building visual language.",
   decisions: [],
   screens: [],

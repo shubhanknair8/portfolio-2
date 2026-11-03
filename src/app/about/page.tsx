@@ -2,7 +2,7 @@ import { domains, profile } from "@/content/cv";
 import { site } from "@/content/site";
 import { Band, Eyebrow } from "@/components/site/bits";
 import { CtaRow } from "@/components/site/CtaRow";
-import { Credentials, SectionHead, Services, Timeline, Toolkit } from "@/components/site/sections";
+import { Credentials, Expertise, SectionHead, Services, Timeline } from "@/components/site/sections";
 import { Reveal, SplitText } from "@/components/motion";
 
 export const metadata = { title: "About" };
@@ -15,7 +15,7 @@ export default function Page() {
         <div className="halves">
           <div className="cs-hero__title">
             <SplitText as="h1" text={site.name} className="t-h1" />
-            <p className="t-h2s reveal reveal-2">UI/UX Designer · Product Designer · AI-Assisted Design</p>
+            <p className="t-h2s reveal reveal-2">Product Designer</p>
           </div>
           <div className="cs-hero__intro t-subtitle reveal reveal-3">
             <p>{profile}</p>
@@ -37,21 +37,10 @@ export default function Page() {
       </Band>
 
       <Band tone="plain" className="section">
-        <SectionHead eyebrow="Services" title="How I work" />
-        <Services />
+        <Services title="How I can help" />
       </Band>
 
-      <section className="band band--dark toolkit-band" aria-labelledby="toolkit-h">
-        <div className="wrap">
-          <div className="section-head" style={{ marginBottom: 40 }}>
-            <Eyebrow center>Toolkit</Eyebrow>
-            <h2 id="toolkit-h" className="t-h2">
-              Tools I design with
-            </h2>
-          </div>
-        </div>
-        <Toolkit />
-      </section>
+      <Expertise />
 
       <Band tone="plain" className="section">
         <SectionHead eyebrow="Credentials" title="Education & certifications" />

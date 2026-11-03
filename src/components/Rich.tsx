@@ -2,6 +2,8 @@ import { isTodo, type Text, type Todo } from "@/content/types";
 
 /** Visible placeholder for missing content. Deliberately loud so it can't ship unnoticed. */
 export function TodoMark({ hint }: { hint: string }) {
+  // Shown while developing; never on the live site.
+  if (process.env.NODE_ENV === "production") return null;
   return (
     <span className="todo" data-todo>
       [TODO]{hint ? ` ${hint}` : ""}

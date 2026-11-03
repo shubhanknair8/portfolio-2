@@ -1,35 +1,17 @@
 "use client";
 
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import { useEffect, useRef, useState } from "react";
-import { site } from "@/content/site";
+import { nav, site } from "@/content/site";
 import { DotsIcon } from "./bits";
 import { NavList } from "./NavList";
-
-function Clock() {
-  const [now, setNow] = useState<Date | null>(null);
-  useEffect(() => {
-    setNow(new Date());
-    const id = setInterval(() => setNow(new Date()), 30_000);
-    return () => clearInterval(id);
-  }, []);
-  if (!now) return <span className="header__clock" aria-hidden />;
-  const long = now.toLocaleDateString("en-US", { weekday: "long", month: "long", day: "numeric" });
-  const short = now.toLocaleDateString("en-US", { month: "short", day: "numeric" });
-  const time = now.toLocaleTimeString("en-US", { hour: "numeric", minute: "2-digit" });
-  return (
-    <span className="header__clock">
-      <span className="clock__long">{long}</span>
-      <span className="clock__short">{short}</span>
-      <span>{time}</span>
-    </span>
-  );
-}
 
 export function Header() {
   const [open, setOpen] = useState(false);
   const closeRef = useRef<HTMLButtonElement>(null);
   const triggerRef = useRef<HTMLButtonElement>(null);
+  const path = usePathname();
 
   useEffect(() => {
     if (!open) return;
@@ -59,25 +41,48 @@ export function Header() {
     };
   }, [open]);
 
+  const links = nav.filter((l) => l.href !== "/");
+
   return (
-    <header className="header">
-      <div className="wrap">
-        <div className="header__bar">
-          <Link href="/" className="header__logo t-logo" aria-label={`${site.name}, home`}>
-            {site.logo}
+    <header className="header2">
+      <div className="header2__bar">
+        <Link href="/" className="header2__cell header2__logo" aria-label={`${site.name}, home`}>
+          {site.name}
+        </Link>
+        <nav aria-label="Primary" className="header2__nav">
+          <ul>
+            {links.map((l) => (
+              <li key={l.href}>
+                {l.download ? (
+                  <a href={l.href} download className="header2__cell header2__link">
+                    {l.label}
+                  </a>
+                ) : (
+                  <Link href={l.href} className="header2__cell header2__link" aria-current={path === l.href ? "page" : undefined}>
+                    {l.label}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </nav>
+        <span className="header2__spacer" />
+        {site.available && (
+          <Link href="/contact" className="header2__cell header2__status">
+            <span className="status-dot" aria-hidden />
+            Available for work
           </Link>
-          <Clock />
-          <button
-            ref={triggerRef}
-            className="header__menu"
-            aria-label="Open menu"
-            aria-expanded={open}
-            aria-controls="site-menu"
-            onClick={() => setOpen(true)}
-          >
-            <DotsIcon />
-          </button>
-        </div>
+        )}
+        <button
+          ref={triggerRef}
+          className="header2__cell header2__menu"
+          aria-label="Open menu"
+          aria-expanded={open}
+          aria-controls="site-menu"
+          onClick={() => setOpen(true)}
+        >
+          <DotsIcon />
+        </button>
       </div>
 
       <div id="site-menu" className="menu" role="dialog" aria-modal="true" aria-label="Menu" hidden={!open}>
@@ -88,9 +93,7 @@ export function Header() {
               Close
             </button>
           </div>
-          <nav aria-label="Primary">
-            <NavList onNavigate={() => setOpen(false)} />
-          </nav>
+          <NavList onNavigate={() => setOpen(false)} />
         </div>
       </div>
     </header>

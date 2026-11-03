@@ -1,7 +1,10 @@
 import type { CSSProperties } from "react";
-import { certifications, education, experience, languages, services, tools } from "@/content/cv";
+import { certifications, education, experience, services, tools } from "@/content/cv";
 import { Eyebrow } from "./bits";
-import { MarqueePause, Reveal, SplitText } from "../motion";
+import { Reveal, SplitText } from "../motion";
+import { ServiceIcon, ToolMark } from "./icons";
+import { DoodleWireframe } from "./DoodleWireframe";
+import { KitChips } from "./KitChips";
 
 export function SectionHead({ index, eyebrow, title, intro }: { index?: number; eyebrow: string; title: string; intro?: string }) {
   return (
@@ -19,22 +22,31 @@ export function SectionHead({ index, eyebrow, title, intro }: { index?: number; 
   );
 }
 
-export function Services() {
+/** "What I do": left-aligned heading with a pen drawing a doodle wireframe, then a ruled grid of service cards. */
+export function Services({ index, title = "Services I offer to bring ideas to life" }: { index?: number; title?: string }) {
   return (
-    <ol className="services">
-      {services.map((s, i) => (
-        <Reveal as="li" key={s.title} className="service" delay={(i % 4) * 60}>
-          <span className="service__num">{i + 1}</span>
-          <div>
-            <h3 className="t-h3 service__title">{s.title}</h3>
-            <p className="t-body service__body">{s.body}</p>
-          </div>
-          <span className="service__mark" aria-hidden>
-            +
-          </span>
+    <>
+      <div className="services-head">
+        <div>
+          <Eyebrow index={index}>What I do</Eyebrow>
+          <SplitText text={title} className="t-h2 services-head__title" />
+        </div>
+        <Reveal className="dd-wrap">
+          <DoodleWireframe />
         </Reveal>
-      ))}
-    </ol>
+      </div>
+      <ul className="svc-grid">
+        {services.map((s, i) => (
+          <Reveal as="li" key={s.title} className="svc" delay={(i % 4) * 60}>
+            <span className="svc__icon">
+              <ServiceIcon title={s.title} />
+            </span>
+            <h3 className="t-h3 svc__title">{s.title}</h3>
+            <p className="t-body">{s.body}</p>
+          </Reveal>
+        ))}
+      </ul>
+    </>
   );
 }
 
@@ -66,35 +78,93 @@ export function Timeline() {
   );
 }
 
-function MarqueeRow({ items, reverse }: { items: string[]; reverse?: boolean }) {
-  // Repeat until one half is wide enough, then duplicate that half for a seamless loop.
-  let half = [...items];
-  while (half.length < 8) half = half.concat(items);
-  const loop = [...half, ...half];
+/** Tool cards: every description is taken from the CV. */
+const toolCards = [
+  {
+    mark: "figma" as const,
+    tint: "#E4E0F7",
+    ink: "#4B3FA0",
+    name: "Figma & FigJam",
+    body: "Flows, wireframes and annotated prototypes, shared component libraries and token-based design systems.",
+  },
+  {
+    mark: "illustrator" as const,
+    tint: "#F6E1D3",
+    ink: "#A8481A",
+    name: "Adobe Illustrator",
+    body: "Brand-aligned visual concepts and illustration for product and marketing work.",
+  },
+  {
+    mark: "ai" as const,
+    tint: "#DCEFE2",
+    ink: "#2E7346",
+    name: "AI design tools",
+    body: "Google Stitch, Uizard and Page Flows to speed up wireframes and flow research.",
+  },
+];
+const tiles = [
+  { mark: "research" as const, tint: "#F6E1D3", ink: "#A8481A" },
+  { mark: "maze" as const, tint: "#DCE6F5", ink: "#2C5BA8" },
+  { mark: "ai" as const, tint: "#DCEFE2", ink: "#2E7346" },
+  { mark: "figma" as const, tint: "#E4E0F7", ink: "#4B3FA0" },
+  { mark: "illustrator" as const, tint: "#F3DADA", ink: "#9B3434" },
+];
+
+/** Dark "Expertise" band: heading + fading row of tool tiles, then three tool cards and the rest of the kit. */
+export function Expertise({ index }: { index?: number }) {
+  // Everything except the three tools with their own cards; AI tools first.
+  const rest = [...tools.ai, ...tools.design].filter((t) => !/^(Figma|FigJam|Adobe Illustrator)$/.test(t));
   return (
-    <div className={`marquee ${reverse ? "marquee--rev" : ""}`}>
-      <ul className="marquee__track" aria-hidden>
-        {loop.map((t, i) => (
-          <li key={i} className={`marquee__item ${i >= items.length ? "marquee__dup" : ""}`}>
-            {t}
-            <span className="marquee__sep">✳</span>
-          </li>
-        ))}
-      </ul>
-    </div>
+    <section className="band band--dark expertise" aria-labelledby="expertise-h">
+      <div className="wrap">
+        <div className="expertise__head">
+          <div>
+            <Eyebrow index={index}>Expertise</Eyebrow>
+            <h2 id="expertise-h" className="t-h2 expertise__title">
+              The tools I design with
+            </h2>
+          </div>
+          <div className="tiles" aria-hidden>
+            <ul className="tiles__track">
+              {[...tiles, ...tiles, ...tiles].map((t, i) => (
+                <li key={i} className="tile" style={{ background: t.tint, color: t.ink }}>
+                  <ToolMark kind={t.mark} />
+                </li>
+              ))}
+            </ul>
+          </div>
+        </div>
+
+        <ul className="tool-cards">
+          {toolCards.map((t, i) => (
+            <Reveal as="li" key={t.name} className="tool-card" delay={i * 100} style={{ "--tint": t.tint, "--ink2": t.ink } as CSSProperties}>
+              <span className="tool-card__icon" style={{ background: t.tint, color: t.ink }}>
+                <ToolMark kind={t.mark} />
+              </span>
+              <h3 className="t-h3">{t.name}</h3>
+              <p className="t-body">{t.body}</p>
+            </Reveal>
+          ))}
+        </ul>
+
+        <div className="kit">
+          <p className="label">Also in my kit</p>
+          <KitChips items={rest} />
+        </div>
+      </div>
+    </section>
   );
 }
 
-export function Toolkit() {
+/** Certifications visible before the dropdown. */
+const SHOWN = 4;
+
+function Cert({ c }: { c: { title: string; by?: string } }) {
   return (
-    <div className="toolkit">
-      <p className="sr-only">
-        Design and research tools: {tools.design.join(", ")}. AI design tools: {tools.ai.join(", ")}.
-      </p>
-      <MarqueeRow items={tools.design} />
-      <MarqueeRow items={tools.ai} reverse />
-      <MarqueePause />
-    </div>
+    <li className="creds__item">
+      <h3 className="t-h3">{c.title}</h3>
+      {c.by && <p className="t-body">{c.by}</p>}
+    </li>
   );
 }
 
@@ -116,23 +186,24 @@ export function Credentials() {
       <Reveal delay={120}>
         <p className="label">Certifications</p>
         <ul className="creds__list">
-          {certifications.map((c) => (
-            <li key={c.title} className="creds__item">
-              <h3 className="t-h3">{c.title}</h3>
-              {c.by && <p className="t-body">{c.by}</p>}
-            </li>
+          {certifications.slice(0, SHOWN).map((c) => (
+            <Cert key={c.title} c={c} />
           ))}
         </ul>
-        <p className="label" style={{ marginTop: 40 }}>
-          Languages
-        </p>
-        <ul className="langs">
-          {languages.map((l) => (
-            <li key={l.name} className="lang">
-              <span className="t-ink">{l.name}</span> <span className="t-span">{l.level}</span>
-            </li>
-          ))}
-        </ul>
+        {certifications.length > SHOWN && (
+          <details className="creds__more">
+            <summary className="creds__toggle">
+              <span className="creds__toggle-open">View all certifications ({certifications.length - SHOWN} more)</span>
+              <span className="creds__toggle-close">Show fewer</span>
+              <span className="creds__chev" aria-hidden />
+            </summary>
+            <ul className="creds__list creds__list--more">
+              {certifications.slice(SHOWN).map((c) => (
+                <Cert key={c.title} c={c} />
+              ))}
+            </ul>
+          </details>
+        )}
       </Reveal>
     </div>
   );
