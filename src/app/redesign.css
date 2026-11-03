@@ -1025,3 +1025,6 @@ html[data-motion="off"] .dd .dd__ink path, html[data-motion="off"] .dd .dd__pen,
 /* Footer nav: arrows line up in one column, with room between label and arrow */
 .footer2__nav { width: max-content; }
 .footer2__link { display: flex; justify-content: space-between; width: 100%; gap: 56px; }
+/* Footer nav: roughly 2.5x more space between the rows */
+.footer2__nav { gap: 14px; }
+.footer2__link { padding: 16px 0; }

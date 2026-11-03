@@ -31,3 +31,16 @@
 .ccard__go { border: 0; width: 40px; height: 40px; }
 .ccard:hover .ccard__go { background: transparent; color: var(--cink); transform: translateX(4px); }
 @media (max-width: 809.98px) { .ccard { padding: 18px 14px; } }
+
+/* Contact illustration */
+.contact2__art .contact-art { width: 100%; height: auto; display: block; overflow: visible; }
+.contact-art__plane { transform-box: fill-box; transform-origin: center; animation: ca-fly 4.5s ease-in-out infinite; }
+.contact-art__trail { animation: ca-dash 6s linear infinite; }
+.contact-art__steam { animation: ca-steam 2.8s ease-in-out infinite; }
+.contact-art__spark { transform-box: fill-box; transform-origin: center; animation: ca-twinkle 3s ease-in-out infinite; }
+@keyframes ca-fly { 50% { transform: translate(6px, -8px) rotate(-4deg); } }
+@keyframes ca-dash { to { stroke-dashoffset: -110; } }
+@keyframes ca-steam { 50% { opacity: 0.35; transform: translateY(-3px); } }
+@keyframes ca-twinkle { 50% { opacity: 0.5; transform: scale(0.8); } }
+html[data-motion="off"] .contact-art__plane, html[data-motion="off"] .contact-art__trail, html[data-motion="off"] .contact-art__steam, html[data-motion="off"] .contact-art__spark { animation-play-state: paused; }
+@media (prefers-reduced-motion: reduce) { .contact-art__plane, .contact-art__trail, .contact-art__steam, .contact-art__spark { animation: none; } }
