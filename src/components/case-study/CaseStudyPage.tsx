@@ -203,7 +203,9 @@ export function CaseStudyPage({ study }: { study: CaseStudy }) {
                       </p>
                       <p className="cs2-insight__do">
                         <span className="sr-only">Led to: </span>
-                        <span aria-hidden>→ </span>
+                        <span className="cs2-insight__arrow" aria-hidden>
+                          <ArrowUpRight size={12} />
+                        </span>
                         <Rich value={ins.decision} />
                       </p>
                     </li>

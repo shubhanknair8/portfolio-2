@@ -976,3 +976,7 @@ html[data-motion="off"] .dd .dd__ink path, html[data-motion="off"] .dd .dd__pen,
   .writing__item { grid-template-columns: 1fr; gap: 10px; }
   .writing__drawings { grid-template-columns: 1fr 1fr; }
 }
+
+/* Certifications toggle: dotted pixel chevron, points down when closed and up when open */
+.creds__chev { width: auto; height: auto; border: 0; display: inline-grid; place-items: center; transform: rotate(90deg); transition: transform 0.3s ease; }
+.creds__more[open] .creds__chev { transform: rotate(-90deg); }

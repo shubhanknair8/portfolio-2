@@ -25,7 +25,7 @@ export function Hero() {
             <div className="hero2__actions reveal reveal-3">
               {site.resume ? (
                 <a href={site.resume} className="btn-dark" download>
-                  Download résumé <ArrowUpRight />
+                  Download resume <ArrowUpRight />
                 </a>
               ) : (
                 <Link href="/contact" className="btn-dark">

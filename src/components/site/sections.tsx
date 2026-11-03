@@ -1,6 +1,6 @@
 import type { CSSProperties } from "react";
 import { certifications, education, experience, services, tools } from "@/content/cv";
-import { Eyebrow } from "./bits";
+import { Eyebrow, PixelArrow } from "./bits";
 import { Reveal, SplitText } from "../motion";
 import { ServiceIcon, ToolMark } from "./icons";
 import { DoodleWireframe } from "./DoodleWireframe";
@@ -195,7 +195,9 @@ export function Credentials() {
             <summary className="creds__toggle">
               <span className="creds__toggle-open">View all certifications ({certifications.length - SHOWN} more)</span>
               <span className="creds__toggle-close">Show fewer</span>
-              <span className="creds__chev" aria-hidden />
+              <span className="creds__chev" aria-hidden>
+                <PixelArrow size={16} />
+              </span>
             </summary>
             <ul className="creds__list creds__list--more">
               {certifications.slice(SHOWN).map((c) => (
