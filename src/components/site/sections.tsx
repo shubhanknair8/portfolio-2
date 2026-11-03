@@ -1,4 +1,6 @@
 import type { CSSProperties } from "react";
+import { existsSync } from "node:fs";
+import { join } from "node:path";
 import { certifications, education, experience, services, tools } from "@/content/cv";
 import { Eyebrow, PixelArrow } from "./bits";
 import { Reveal, SplitText } from "../motion";
@@ -85,23 +87,38 @@ const toolCards = [
     tint: "#E4E0F7",
     ink: "#4B3FA0",
     name: "Figma & FigJam",
+    /** Official logo file under /public. Shown only once the file is there; until then the simple mark is used. */
+    logo: "/images/tools/figma.png",
     body: "Flows, wireframes and annotated prototypes, shared component libraries and token-based design systems.",
   },
   {
     mark: "illustrator" as const,
-    tint: "#F6E1D3",
-    ink: "#A8481A",
-    name: "Adobe Illustrator",
-    body: "Brand-aligned visual concepts and illustration for product and marketing work.",
+    tint: "#F7E1F3",
+    ink: "#6B0F5A",
+    name: "Adobe XD & Illustrator",
+    logo: "/images/tools/adobe-xd.png",
+    /** App-icon logo: fills the whole tile */
+    logoFill: true,
+    body: "Wireframes and prototypes in XD, and brand-aligned visual concepts and illustration for product and marketing work.",
   },
   {
     mark: "ai" as const,
     tint: "#DCEFE2",
     ink: "#2E7346",
     name: "AI design tools",
+    /** Shown as a stack of three, then "+N" for the rest. Add a logo file at /images/tools/<id>.png to replace the letter. */
+    stack: [
+      { id: "google-stitch", name: "Google Stitch", letter: "G", bg: "#E8F0FE", ink: "#1A56C4" },
+      { id: "uizard", name: "Uizard", letter: "U", bg: "#EDE7FB", ink: "#5B3CC4" },
+      { id: "page-flows", name: "Page Flows", letter: "P", bg: "#FDE9DD", ink: "#A8481A" },
+    ],
+    more: ["Figma Make", "ChatGPT", "Claude"],
     body: "Google Stitch, Uizard and Page Flows to speed up wireframes and flow research.",
   },
 ];
+/** True when a logo file has been added to /public. */
+const hasLogo = (src?: string) => !!src && existsSync(join(process.cwd(), "public", src));
+
 const tiles = [
   { mark: "research" as const, tint: "#F6E1D3", ink: "#A8481A" },
   { mark: "maze" as const, tint: "#DCE6F5", ink: "#2C5BA8" },
@@ -113,7 +130,7 @@ const tiles = [
 /** Dark "Expertise" band: heading + fading row of tool tiles, then three tool cards and the rest of the kit. */
 export function Expertise({ index }: { index?: number }) {
   // Everything except the three tools with their own cards; AI tools first.
-  const rest = [...tools.ai, ...tools.design].filter((t) => !/^(Figma|FigJam|Adobe Illustrator)$/.test(t));
+  const rest = [...tools.ai, ...tools.design].filter((t) => !/^(Figma|FigJam|Adobe Illustrator|Adobe XD)$/.test(t));
   return (
     <section className="band band--dark expertise" aria-labelledby="expertise-h">
       <div className="wrap">
@@ -138,11 +155,46 @@ export function Expertise({ index }: { index?: number }) {
         <ul className="tool-cards">
           {toolCards.map((t, i) => (
             <Reveal as="li" key={t.name} className="tool-card" delay={i * 100} style={{ "--tint": t.tint, "--ink2": t.ink } as CSSProperties}>
+              {"stack" in t && t.stack ? (
+                <span className="tool-stack" aria-label={`${t.stack.map((x) => x.name).join(", ")} and ${t.more.length} more: ${t.more.join(", ")}`}>
+                  {t.stack.map((x, k) => {
+                    const src = `/images/tools/${x.id}.png`;
+                    return (
+                      <span key={x.id} className="tool-stack__item" style={{ background: x.bg, color: x.ink, zIndex: 3 - k }} title={x.name}>
+                        {hasLogo(src) ? (
+                          // eslint-disable-next-line @next/next/no-img-element
+                          <img src={src} alt="" />
+                        ) : (
+                          <span aria-hidden>{x.letter}</span>
+                        )}
+                      </span>
+                    );
+                  })}
+                  <span className="tool-stack__more" title={t.more.join(", ")} aria-hidden>
+                    +{t.more.length}
+                  </span>
+                </span>
+              ) : (
               <span className="tool-card__icon" style={{ background: t.tint, color: t.ink }}>
-                <ToolMark kind={t.mark} />
+                {"logo" in t && hasLogo(t.logo) ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={t.logo} alt="" className={`tool-card__logo ${"logoFill" in t && t.logoFill ? "tool-card__logo--fill" : ""}`} />
+                ) : (
+                  <ToolMark kind={t.mark} />
+                )}
               </span>
+              )}
               <h3 className="t-h3">{t.name}</h3>
               <p className="t-body">{t.body}</p>
+              {/* On hover the card fills with the tool's colour and its mark grows into the background */}
+              <span className="tool-card__bg" aria-hidden>
+                {"logo" in t && hasLogo(t.logo) ? (
+                  // eslint-disable-next-line @next/next/no-img-element
+                  <img src={t.logo} alt="" />
+                ) : (
+                  <ToolMark kind={t.mark} />
+                )}
+              </span>
             </Reveal>
           ))}
         </ul>

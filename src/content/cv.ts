@@ -172,7 +172,7 @@ export const services = [
 ];
 
 export const tools = {
-  design: ["Figma", "FigJam", "Adobe Illustrator", "Maze", "Framer", "Webflow", "Spline", "Miro", "Notion", "Jira", "Loom", "Page Flows"],
+  design: ["Figma", "FigJam", "Adobe Illustrator", "Adobe XD", "Maze", "Framer", "Webflow", "Spline", "Miro", "Notion", "Jira", "Loom", "Page Flows"],
   // Check these are all tools you really use; delete any you don't.
   ai: ["Google Stitch", "Uizard", "Figma Make", "Framer AI", "ChatGPT", "Claude", "Midjourney", "Gemini", "Perplexity", "Relume", "v0"],
 };

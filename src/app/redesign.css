@@ -980,3 +980,35 @@ html[data-motion="off"] .dd .dd__ink path, html[data-motion="off"] .dd .dd__pen,
 /* Certifications toggle: dotted pixel chevron, points down when closed and up when open */
 .creds__chev { width: auto; height: auto; border: 0; display: inline-grid; place-items: center; transform: rotate(90deg); transition: transform 0.3s ease; }
 .creds__more[open] .creds__chev { transform: rotate(-90deg); }
+
+/* Tool cards: the tool's mark grows into the card background on hover */
+.tool-card__bg { position: absolute; z-index: -1; right: -12%; bottom: -26%; width: 72%; aspect-ratio: 1; color: var(--ink2); opacity: 0; transform: scale(0.55) rotate(-18deg); transform-origin: 70% 70%; pointer-events: none; transition: opacity 0.4s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.tool-card__bg svg { width: 100%; height: 100%; display: block; }
+.tool-card:hover .tool-card__bg, .tool-card:focus-within .tool-card__bg { opacity: 0.18; transform: scale(1) rotate(-8deg); transition-delay: 0.12s; }
+@media (hover: none) { .tool-card__bg { display: none; } }
+@media (prefers-reduced-motion: reduce) { .tool-card__bg { transition: opacity 0.2s ease; transform: none; } .tool-card:hover .tool-card__bg { transform: none; } }
+.tool-card__logo { width: 26px; height: auto; display: block; }
+.tool-card__bg img { width: 100%; height: 100%; object-fit: contain; display: block; }
+.tool-card:has(.tool-card__logo):hover .tool-card__bg { opacity: 0.22; }
+
+/* Real logos sit on white inside the icon tile */
+.tool-card__icon:has(.tool-card__logo) { background: #fff !important; }
+.tool-card__logo { width: 30px; height: 30px; object-fit: contain; }
+
+/* AI tools card: three overlapping tiles, then "+N" */
+.tool-stack { display: flex; align-items: center; height: 56px; margin-bottom: 24px; }
+.tool-stack__item, .tool-stack__more { position: relative; display: grid; place-items: center; width: 52px; height: 52px; border-radius: 12px; border: 3px solid var(--dark-2); font-weight: 700; font-size: 20px; overflow: hidden; transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), border-color 0.4s ease; }
+.tool-stack__item + .tool-stack__item, .tool-stack__more { margin-left: -14px; }
+.tool-stack__item img { width: 70%; height: 70%; object-fit: contain; }
+.tool-stack__more { z-index: 0; background: #3a3732; color: #fff; font-size: 16px; }
+.tool-card:hover .tool-stack__item, .tool-card:hover .tool-stack__more { border-color: var(--tint); }
+.tool-card:hover .tool-stack__item:nth-child(1) { transform: translateX(-4px) rotate(-6deg); }
+.tool-card:hover .tool-stack__item:nth-child(3) { transform: translateX(4px) rotate(6deg); }
+.tool-card:hover .tool-stack__more { transform: translateX(8px); background: var(--ink2); }
+@media (prefers-reduced-motion: reduce) { .tool-card:hover .tool-stack__item, .tool-card:hover .tool-stack__more { transform: none; } }
+/* App-icon logos fill their tile edge to edge */
+.tool-stack__item:has(img) { background: transparent !important; }
+.tool-stack__item img { width: 100%; height: 100%; object-fit: cover; border-radius: 9px; }
+/* App-icon logos (e.g. Adobe XD) fill the whole icon tile */
+.tool-card__icon:has(.tool-card__logo--fill) { background: transparent !important; padding: 0; overflow: hidden; }
+.tool-card__logo--fill { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
