@@ -13,8 +13,8 @@ const config: Config = {
         todo: "#9E4520",
       },
       fontFamily: {
-        display: ["var(--font-display)", "sans-serif"],
-        sans: ["var(--font-body)", "system-ui", "sans-serif"],
+        display: ["\"Helvetica Neue\"", "Helvetica", "Arial", "sans-serif"],
+        sans: ["\"Helvetica Neue\"", "Helvetica", "Arial", "sans-serif"],
       },
       maxWidth: { page: "75rem" },
     },
