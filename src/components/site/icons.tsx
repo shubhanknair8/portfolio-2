@@ -169,3 +169,36 @@ export function Scribble() {
     </svg>
   );
 }
+
+/** Simple social glyphs for the footer, drawn in the current text colour with no background. */
+export function SocialIcon({ kind }: { kind: "linkedin" | "instagram" | "x" | "medium" | "behance" | "dribbble" }) {
+  const text = (t: string, size = 20) => (
+    <text x="14" y="14" dy="0.36em" textAnchor="middle" fontSize={size} fontWeight="700" fill="currentColor" style={{ fontFamily: "var(--body)" }}>
+      {t}
+    </text>
+  );
+  const glyph = {
+    linkedin: text("in", 21),
+    x: text("X", 21),
+    medium: text("M", 20),
+    behance: text("Bē", 17),
+    instagram: (
+      <g fill="none" stroke="currentColor" strokeWidth="2.2">
+        <rect x="4" y="4" width="20" height="20" rx="6" />
+        <circle cx="14" cy="14" r="4.6" />
+        <circle cx="19.6" cy="8.4" r="0.8" fill="currentColor" />
+      </g>
+    ),
+    dribbble: (
+      <g fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
+        <circle cx="14" cy="14" r="10" />
+        <path d="M7.6 6.4c4.8 5 8.4 10.8 10 17.2M4.2 12.6c6 .4 11.8-.9 16.9-4.7M6.2 20.8c3.8-4.4 9.6-6.2 17.4-4.9" />
+      </g>
+    ),
+  }[kind];
+  return (
+    <svg width="28" height="28" viewBox="0 0 28 28" aria-hidden>
+      {glyph}
+    </svg>
+  );
+}

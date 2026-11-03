@@ -22,7 +22,15 @@ export const site = {
   ],
   newestNote: "Recent work across AI, insurance and mental health." as Text,
   featuredIntro: "Products for AI, insurance, mental health and sports accessibility, researched and designed to ship." as Text,
-  socials: [{ label: "LinkedIn", href: "https://linkedin.com/in/shubhanknair" }],
+  /** Footer icons. Paste your profile links; an icon only shows once its link is filled in. */
+  socials: [
+    { label: "LinkedIn", icon: "linkedin", href: "https://linkedin.com/in/shubhanknair" },
+    { label: "Instagram", icon: "instagram", href: "https://www.instagram.com/shubhanknair/" },
+    { label: "X (Twitter)", icon: "x", href: "https://x.com/shubhanknair" },
+    { label: "Dribbble", icon: "dribbble", href: "https://dribbble.com/shubhanknair07" },
+    { label: "Behance", icon: "behance", href: "https://www.behance.net/shubhanknair07" },
+    { label: "Medium", icon: "medium", href: "" },
+  ] as { label: string; icon: "linkedin" | "instagram" | "x" | "medium" | "behance" | "dribbble"; href: string }[],
   legal: [] as { label: string; href: string }[],
 };
 

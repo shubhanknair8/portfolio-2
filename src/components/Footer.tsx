@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { nav, site } from "@/content/site";
-import { ArrowUpRight, Loops } from "./site/icons";
+import { ArrowUpRight, Loops, SocialIcon } from "./site/icons";
 import { SwapWord } from "./motion";
 
 export function Footer() {
@@ -23,23 +23,16 @@ export function Footer() {
             <div className="footer2__meta">
               <div>
                 <p className="label">Social</p>
-                <ul className="footer2__social" aria-label="Social links">
-                  {site.socials.map((s) => (
-                    <li key={s.href}>
-                      <a href={s.href} className="pill-link" rel="me noopener" target="_blank">
-                        {s.label}
-                        <ArrowUpRight size={12} />
-                      </a>
-                    </li>
-                  ))}
-                  {site.resume && (
-                    <li>
-                      <a href={site.resume} className="pill-link" download>
-                        Download CV
-                        <ArrowUpRight size={12} />
-                      </a>
-                    </li>
-                  )}
+                <ul className="footer2__icons" aria-label="Social links">
+                  {site.socials
+                    .filter((s) => s.href.trim())
+                    .map((s) => (
+                      <li key={s.label}>
+                        <a href={s.href} className="social-icon" rel="me noopener" target="_blank" aria-label={s.label} title={s.label}>
+                          <SocialIcon kind={s.icon} />
+                        </a>
+                      </li>
+                    ))}
                 </ul>
               </div>
               <div>

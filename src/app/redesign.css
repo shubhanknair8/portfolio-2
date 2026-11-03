@@ -1012,3 +1012,12 @@ html[data-motion="off"] .dd .dd__ink path, html[data-motion="off"] .dd .dd__pen,
 /* App-icon logos (e.g. Adobe XD) fill the whole icon tile */
 .tool-card__icon:has(.tool-card__logo--fill) { background: transparent !important; padding: 0; overflow: hidden; }
 .tool-card__logo--fill { width: 100%; height: 100%; object-fit: cover; border-radius: 10px; }
+
+/* Footer pills: more breathing room between the label and the chevron */
+.pill-link { gap: 22px; padding: 10px 18px; }
+
+/* Footer social icons: round grey glyphs that light up on hover */
+.footer2__icons { display: flex; flex-wrap: wrap; align-items: center; gap: 26px; }
+.social-icon { display: block; color: var(--gray-on-dark); transition: color 0.3s ease, transform 0.3s ease; }
+.social-icon:hover, .social-icon:focus-visible { color: #fff; transform: translateY(-3px); }
+.social-icon svg { display: block; width: 28px; height: 28px; }
