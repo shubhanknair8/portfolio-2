@@ -1173,7 +1173,6 @@ html[data-motion="off"] .intro-curtain { display: none; }
 .hero5__title { margin-top: 32px; display: grid; font-family: var(--display); font-weight: 600; font-size: clamp(48px, 6.2vw, 96px); line-height: 0.98; letter-spacing: -0.05em; }
 .hero5__lead { color: #8a8780; }
 .hero5__word { color: var(--ink); min-height: 1em; }
-.hero5__word .rotator__caret { background: var(--ink) !important; }
 .hero5__intro { margin-top: 36px; max-width: 520px; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.4; color: var(--gray); letter-spacing: -0.01em; }
 .hero5__intro strong { color: var(--ink); font-weight: 600; }
 .hero5__cta { margin-top: 40px; display: inline-flex; align-items: center; gap: 14px; padding: 8px 26px 8px 8px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: 18px; box-shadow: 0 18px 30px -16px rgba(28, 27, 25, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; }
@@ -1207,3 +1206,8 @@ html[data-motion="off"] .intro-curtain { display: none; }
 }
 /* Download Resume pill without the photo */
 .hero5__cta { padding: 18px 30px; gap: 16px; }
+/* Hero: whole headline black, typing word in its own colour; text further left, more room before the cards */
+.hero5__lead { color: var(--ink); }
+.hero5__word { color: inherit; }
+.hero5__inner { max-width: 1480px; padding-left: clamp(24px, 5vw, 88px); padding-right: clamp(24px, 4vw, 72px); gap: clamp(56px, 8vw, 140px); }
+@media (max-width: 809.98px) { .hero5__inner { gap: 40px; } }

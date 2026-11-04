@@ -19,7 +19,6 @@ const POSES: [number, number, number][] = [
  */
 export function Hero() {
   const words = site.heroWords.map((w) => w.word.toLowerCase());
-  const inkWords = site.heroWords.map((w) => ({ ...w, color: "var(--ink)" }));
   const [lead, ...rest] = profile.split(/(?<=\.)\s+/);
   const covers = work
     .filter((w) => w.featured)
@@ -45,7 +44,7 @@ export function Hero() {
               {site.heroLead}
             </span>
             <span aria-hidden className="hero5__word">
-              <RotatingWord words={inkWords} />
+              <RotatingWord words={site.heroWords} />
             </span>
           </h1>
           <p className="hero5__intro">
