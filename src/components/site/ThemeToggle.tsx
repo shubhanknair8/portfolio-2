@@ -4,12 +4,12 @@ import { useEffect, useState } from "react";
 
 type Theme = "dark" | "light";
 
-/** Switches between the dark theme (default) and the light theme, and remembers the choice. */
+/** Switches between the light theme (default) and the dark theme, and remembers the choice. */
 export function ThemeToggle({ className = "" }: { className?: string }) {
-  const [theme, setTheme] = useState<Theme>("dark");
+  const [theme, setTheme] = useState<Theme>("light");
 
   useEffect(() => {
-    setTheme(document.documentElement.dataset.theme === "light" ? "light" : "dark");
+    setTheme(document.documentElement.dataset.theme === "dark" ? "dark" : "light");
   }, []);
 
   const toggle = () => {
