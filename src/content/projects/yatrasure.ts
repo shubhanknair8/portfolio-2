@@ -10,7 +10,7 @@ export const yatrasure: CaseStudy = {
   slug: "yatrasure",
   title: "YatraSure",
   ready: true,
-  cover: "/images/yatrasure/cover-v2.jpg",
+  cover: "/images/yatrasure/cover-v2-soft.jpg",
   summary:
     "YatraSure is a mobile-first motor insurance app for buying and renewing vehicle insurance in India. The goal was to reduce friction, make insurance terms clear and build trust through thoughtful UX design.",
   outcomeLine: "Simplifying the motor insurance experience: a frictionless, trust-first journey from quote to policy.",

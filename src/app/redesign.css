@@ -1028,3 +1028,182 @@ html[data-motion="off"] .dd .dd__ink path, html[data-motion="off"] .dd .dd__pen,
 /* Footer nav: roughly 2.5x more space between the rows */
 .footer2__nav { gap: 14px; }
 .footer2__link { padding: 16px 0; }
+
+/* ------------------------------------------------------------------
+   Home hero, poster style: giant blue first name behind the cut-out portrait
+   ------------------------------------------------------------------ */
+.hero3 { position: relative; overflow: hidden; background: var(--bg); min-height: min(860px, calc(100vh - 40px)); border-bottom: 1px dashed var(--line); isolation: isolate; }
+.hero3__inner { position: relative; max-width: var(--max); margin: 0 auto; padding: 56px var(--pad) 72px; min-height: inherit; display: flex; flex-direction: column; }
+.hero3__role { font-size: 17px; color: var(--ink); letter-spacing: -0.01em; }
+.hero3__role span { margin: 0 10px; color: var(--gray); }
+.hero3__title { position: relative; z-index: 3; margin-top: 72px; display: grid; font-family: var(--display); font-weight: 700; font-size: clamp(34px, 3.6vw, 52px); line-height: 1.02; letter-spacing: -0.035em; max-width: 620px; }
+.hero3__lead { color: var(--ink); }
+.hero3__word { min-height: 1.05em; }
+.hero3__name { position: relative; z-index: 1; margin: auto 0 0 -0.04em; font-family: var(--display); font-weight: 700; font-size: clamp(120px, 21vw, 330px); line-height: 0.8; letter-spacing: -0.065em; color: var(--name-blue); white-space: nowrap; user-select: none; pointer-events: none; }
+.hero3__cta { position: relative; z-index: 3; align-self: flex-start; margin-top: 48px; display: inline-flex; align-items: center; gap: 14px; font-weight: 700; font-size: 20px; color: var(--name-blue); }
+.hero3__cta svg { transition: transform 0.3s ease; }
+.hero3__cta:hover svg, .hero3__cta:focus-visible svg { transform: translateX(4px); }
+.hero3__cta:hover { text-decoration: underline; text-underline-offset: 6px; }
+.hero3__motion { position: relative; z-index: 3; margin-top: 28px; }
+.hero3__photo { position: absolute; z-index: 2; right: max(2vw, calc((100vw - var(--max)) / 2)); bottom: 0; height: 94%; width: auto; max-width: 52%; object-fit: contain; object-position: bottom right; pointer-events: none; filter: drop-shadow(0 30px 40px rgba(28, 27, 25, 0.18)); }
+@media (max-width: 1199.98px) {
+  .hero3__photo { height: 80%; }
+}
+@media (max-width: 809.98px) {
+  .hero3 { min-height: 0; }
+  .hero3__inner { padding: 32px var(--pad) 0; }
+  .hero3__title { margin-top: 36px; }
+  .hero3__name { margin-top: 40px; font-size: 21.5vw; }
+  .hero3__cta { margin-top: 24px; }
+  .hero3__motion { margin-bottom: 8px; }
+  .hero3__photo { position: relative; display: block; right: auto; height: auto; width: 62%; max-width: 320px; margin: -4vw auto 0; }
+}
+
+/* ------------------------------------------------------------------
+   Page-load intro: a blue panel covers the screen, then slides up and
+   dissolves into pixel blocks at its bottom edge (like the reference site)
+   ------------------------------------------------------------------ */
+.intro-curtain { position: fixed; inset: 0; z-index: 200; pointer-events: none; animation: curtain-up 1.15s cubic-bezier(0.76, 0, 0.24, 1) 0.35s both, curtain-gone 0s linear 1.6s forwards; }
+.intro-curtain__panel { position: absolute; inset: 0; background: var(--curtain); }
+.intro-curtain__pixels { position: absolute; left: 0; right: 0; top: 100%; display: grid; grid-template-columns: repeat(var(--cols), 1fr); grid-template-rows: repeat(var(--rows), calc(100vw / var(--cols))); }
+.intro-curtain__pixels span { background: var(--curtain); }
+@keyframes curtain-up {
+  from { transform: translateY(0); }
+  to { transform: translateY(calc(-100% - 100vw / 24 * 5)); }
+}
+@keyframes curtain-gone { to { visibility: hidden; } }
+/* While the panel leaves, the hero settles in underneath */
+.hero3__title, .hero3__name, .hero3__photo, .hero3__cta { animation: hero3-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.9s both; }
+.hero3__name { animation-delay: 1s; }
+.hero3__photo { animation-delay: 1.05s; }
+@keyframes hero3-in { from { opacity: 0; transform: translateY(28px); } to { opacity: 1; transform: none; } }
+html[data-motion="off"] .intro-curtain { display: none; }
+@media (prefers-reduced-motion: reduce) {
+  .intro-curtain { display: none; }
+  .hero3__title, .hero3__name, .hero3__photo, .hero3__cta { animation: none; }
+}
+
+/* Hero scroll parallax: the portrait drifts down as the page scrolls, sinking behind the next section */
+.hero3__photo { translate: 0 var(--hero-py, 0px); will-change: translate; }
+
+/* ------------------------------------------------------------------
+   Home hero, strip layout: tall photo strip, giant condensed name across it.
+   The white copy of the name is clipped to the strip, so letters over the
+   photo turn white and the rest stay violet.
+   ------------------------------------------------------------------ */
+.hero4 {
+  --strip-x: 51%;
+  --strip-w: clamp(280px, 29vw, 440px);
+  position: relative; overflow: hidden; isolation: isolate; background: #fff;
+  height: min(900px, calc(100vh - 64px)); min-height: 620px; border-bottom: 1px dashed var(--line);
+}
+.hero4__strip { position: absolute; z-index: 1; top: 0; bottom: 0; left: var(--strip-x); width: var(--strip-w); overflow: hidden; }
+.hero4__strip img { position: absolute; left: 0; top: -12%; width: 100%; height: 124%; object-fit: cover; object-position: 50% 30%; translate: 0 calc(var(--hero-py, 0px) * 0.5); will-change: translate; }
+.hero4__name { position: absolute; z-index: 2; left: 0; right: 0; top: 50%; transform: translateY(-50%); display: flex; justify-content: center; pointer-events: none; user-select: none; }
+.hero4__name span { font-family: "Helvetica Neue", Helvetica, "Arial Narrow", Arial, sans-serif; font-stretch: condensed; font-weight: 700; font-size: clamp(110px, 17vw, 270px); line-height: 0.85; letter-spacing: -0.01em; color: var(--name-color); white-space: nowrap; }
+.hero4__name--knock { z-index: 3; clip-path: inset(0 calc(100% - var(--strip-x) - var(--strip-w)) 0 var(--strip-x)); }
+.hero4__name--knock span { color: #fff; }
+.hero4__copy { position: absolute; z-index: 4; top: 48px; left: max(var(--pad), calc((100% - var(--max)) / 2 + var(--pad))); max-width: 40%; }
+.hero4__role { font-size: 16px; color: var(--ink); }
+.hero4__role span { margin: 0 10px; color: var(--gray); }
+.hero4__title { margin-top: 28px; display: grid; font-family: var(--display); font-weight: 700; font-size: clamp(26px, 2.6vw, 38px); line-height: 1.05; letter-spacing: -0.03em; color: var(--ink); }
+.hero4__word { min-height: 1.05em; }
+.hero4__foot { position: absolute; z-index: 4; bottom: 40px; left: max(var(--pad), calc((100% - var(--max)) / 2 + var(--pad))); display: grid; justify-items: start; gap: 18px; }
+.hero4__cta { display: inline-flex; align-items: center; gap: 14px; font-weight: 700; font-size: 20px; color: var(--name-color); }
+.hero4__cta svg { transition: transform 0.3s ease; }
+.hero4__cta:hover { text-decoration: underline; text-underline-offset: 6px; }
+.hero4__cta:hover svg { transform: translateX(4px); }
+/* Entrance after the intro curtain */
+.hero4__strip, .hero4__name, .hero4__copy, .hero4__foot { animation: hero4-in 1s cubic-bezier(0.2, 0.7, 0.2, 1) 0.9s both; }
+.hero4__name, .hero4__name--knock { animation-name: hero4-name; animation-delay: 1s; }
+@keyframes hero4-in { from { opacity: 0; translate: 0 24px; } to { opacity: 1; translate: 0 0; } }
+@keyframes hero4-name { from { opacity: 0; letter-spacing: 0.06em; } to { opacity: 1; letter-spacing: -0.01em; } }
+@media (prefers-reduced-motion: reduce) { .hero4__strip, .hero4__name, .hero4__copy, .hero4__foot { animation: none; } }
+@media (max-width: 809.98px) {
+  .hero4 { --strip-x: 46%; --strip-w: 44vw; height: auto; min-height: 0; aspect-ratio: 3 / 4.6; }
+  .hero4__name span { font-size: 19vw; }
+  .hero4__copy { top: 24px; max-width: 44%; }
+  .hero4__title { margin-top: 16px; font-size: 22px; }
+  .hero4__role { font-size: 13px; }
+  .hero4__role span { margin: 0 6px; }
+  .hero4__foot { bottom: 20px; }
+  .hero4__cta { font-size: 16px; }
+}
+
+/* Strip hero, round 2: a narrow, tall full-length photo; smaller name, bigger headline */
+.hero4 { --strip-x: 52%; --strip-w: clamp(190px, 17vw, 270px); }
+.hero4__strip img { top: -6%; height: 106%; object-position: 50% 100%; }
+.hero4__name span { font-size: clamp(76px, 11vw, 180px); }
+.hero4__copy { max-width: 46%; }
+.hero4__title { margin-top: 32px; font-size: clamp(34px, 4.1vw, 64px); line-height: 1; letter-spacing: -0.04em; }
+@media (max-width: 809.98px) {
+  .hero4 { --strip-x: 54%; --strip-w: 32vw; }
+  .hero4__name span { font-size: 15vw; }
+  .hero4__copy { max-width: 48%; }
+  .hero4__title { font-size: 26px; }
+}
+
+/* ------------------------------------------------------------------
+   Header: centred pill with avatar + name, links and a Contact button
+   ------------------------------------------------------------------ */
+.header3 { position: relative; z-index: 60; display: flex; justify-content: center; padding: 14px var(--pad) 0; background: var(--bg); }
+.header3__pill { display: flex; align-items: center; gap: 8px; padding: 8px 8px 8px 10px; background: rgba(255, 255, 255, 0.72); border: 1px solid var(--line); border-radius: 999px; box-shadow: 0 10px 30px -22px rgba(28, 27, 25, 0.45); }
+.header3__brand { display: flex; align-items: center; gap: 12px; padding-right: 56px; font-weight: 600; font-size: 17px; letter-spacing: -0.02em; white-space: nowrap; }
+.header3__avatar { width: 40px; height: 40px; border-radius: 50%; object-fit: cover; }
+.header3__nav ul { display: flex; gap: 2px; }
+.header3__link { display: block; padding: 10px 14px; border-radius: 999px; font-size: 16px; font-weight: 500; letter-spacing: -0.01em; color: var(--ink); transition: background-color 0.25s ease; }
+.header3__link:hover, .header3__link[aria-current="page"] { background: rgba(28, 27, 25, 0.06); }
+.header3__contact { margin-left: 8px; padding: 10px 22px; border-radius: 999px; border: 1px solid var(--line); background: var(--card); font-size: 16px; font-weight: 600; box-shadow: 0 2px 0 rgba(28, 27, 25, 0.04); transition: background-color 0.25s ease, color 0.25s ease, border-color 0.25s ease; }
+.header3__contact:hover, .header3__contact[aria-current="page"] { background: var(--ink); border-color: var(--ink); color: #fff; }
+.header3__menu { display: none; width: 44px; height: 44px; place-items: center; border-radius: 50%; }
+@media (max-width: 809.98px) {
+  .header3__pill { width: 100%; justify-content: space-between; }
+  .header3__brand { padding-right: 0; font-size: 16px; }
+  .header3__nav, .header3__contact { display: none; }
+  .header3__menu { display: grid; }
+  .header3__menu svg { height: 26px; width: auto; }
+}
+
+/* ------------------------------------------------------------------
+   Home hero: headline left, fanned project covers right
+   ------------------------------------------------------------------ */
+.hero5 { position: relative; z-index: 10; background: var(--bg); }
+.hero5__inner { max-width: var(--max); margin: 0 auto; padding: 96px var(--pad) 120px; display: grid; grid-template-columns: 1.05fr 1fr; gap: 48px; align-items: center; min-height: min(820px, calc(100vh - 80px)); }
+.hero5__pill { display: inline-flex; align-items: center; gap: 12px; padding: 10px 18px 10px 14px; border-radius: 999px; background: var(--card); border: 1px solid var(--line); box-shadow: 0 8px 24px -20px rgba(28, 27, 25, 0.5); font-weight: 500; font-size: 16px; }
+.hero5__title { margin-top: 32px; display: grid; font-family: var(--display); font-weight: 600; font-size: clamp(48px, 6.2vw, 96px); line-height: 0.98; letter-spacing: -0.05em; }
+.hero5__lead { color: #8a8780; }
+.hero5__word { color: var(--ink); min-height: 1em; }
+.hero5__word .rotator__caret { background: var(--ink) !important; }
+.hero5__intro { margin-top: 36px; max-width: 520px; font-size: clamp(18px, 1.6vw, 22px); line-height: 1.4; color: var(--gray); letter-spacing: -0.01em; }
+.hero5__intro strong { color: var(--ink); font-weight: 600; }
+.hero5__cta { margin-top: 40px; display: inline-flex; align-items: center; gap: 14px; padding: 8px 26px 8px 8px; border-radius: 999px; background: var(--ink); color: #fff; font-weight: 600; font-size: 18px; box-shadow: 0 18px 30px -16px rgba(28, 27, 25, 0.6), inset 0 1px 0 rgba(255, 255, 255, 0.12); transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.hero5__cta:hover { transform: translateY(-2px); box-shadow: 0 22px 34px -16px rgba(28, 27, 25, 0.65); }
+.hero5__avatar { width: 44px; height: 44px; border-radius: 50%; object-fit: cover; border: 2px solid rgba(255, 255, 255, 0.85); }
+.hero5__cards { position: relative; aspect-ratio: 16 / 12; }
+.hero5__card { position: absolute; left: 6%; right: 6%; top: 12%; aspect-ratio: 16 / 10; border-radius: 18px; overflow: hidden; background: #ddd; box-shadow: 0 30px 50px -30px rgba(28, 27, 25, 0.55); transform: translate(var(--x), var(--y)) rotate(var(--r)); transform-origin: center; will-change: transform; transition: opacity 0.25s ease; }
+.hero5__card img { width: 100%; height: 100%; object-fit: cover; display: block; }
+.hero5:not(.is-falling):not(.is-landed) .hero5__card { transition: transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1), opacity 0.25s ease; }
+.hero5:not(.is-falling):not(.is-landed) .hero5__cards:hover .hero5__card { transform: translate(calc(var(--x) * 1.4), calc(var(--y) * 1.6)) rotate(calc(var(--r) * 1.4)); }
+.hero5.is-landed .hero5__card { opacity: 0; }
+/* While the hero cards are falling, the stack's first card waits, then takes over */
+.stack.is-waiting .stack__item:first-child .stack__card { opacity: 0; }
+.stack .stack__item:first-child .stack__card { transition: opacity 0.2s ease; }
+@media (max-width: 1199.98px) { .hero5__inner { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 809.98px) {
+  .hero5__inner { grid-template-columns: 1fr; padding: 48px var(--pad) 64px; min-height: 0; gap: 40px; }
+  .hero5__title { font-size: clamp(44px, 12vw, 64px); }
+  .hero5__cards { max-width: 480px; width: 100%; margin: 0 auto; }
+}
+/* Hero sizing: headline on two lines, bigger card stack */
+.hero5__inner { grid-template-columns: 1.25fr 1fr; gap: 40px; }
+.hero5__title { font-size: clamp(44px, 4.9vw, 78px); }
+.hero5__lead { white-space: nowrap; }
+.hero5__card { left: 0; right: 0; top: 10%; }
+@media (max-width: 1199.98px) { .hero5__lead { white-space: normal; } }
+@media (max-width: 809.98px) {
+  .hero5__inner { grid-template-columns: 1fr; }
+  .hero5__title { font-size: clamp(40px, 11vw, 60px); }
+  .hero5__card { left: 4%; right: 4%; }
+}
+/* Download Resume pill without the photo */
+.hero5__cta { padding: 18px 30px; gap: 16px; }

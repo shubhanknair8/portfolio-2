@@ -12,34 +12,34 @@ import { Reveal, SplitText } from "@/components/motion";
 export default function Home() {
   return (
     <>
-      {/* Hero: intro, portrait, counts, skills strip */}
+      {/* Hero: headline, intro, Download Resume, and a fanned stack of project covers */}
       <Hero />
-
-      {/* What I do */}
-      <Band tone="plain" className="section">
-        <Services index={1} />
-      </Band>
-
-      {/* About me bento */}
-      <Band tone="plain" className="section about2">
-        <div className="about2__head">
-          <Eyebrow index={2}>About me</Eyebrow>
-          <SplitText text="Know me better" className="t-h2" />
-        </div>
-        <AboutBento />
-        <div style={{ height: 48 }} />
-        <CtaRow href="/about" label="More about me" note="Currently designing for a multilingual AI platform under AICTE." />
-      </Band>
 
       {/* Work */}
       <Band tone="plain" className="section work-band" id="work">
-        <SectionHead index={3} eyebrow="Featured work" title="My projects" intro={String(site.featuredIntro)} />
+        <SectionHead index={1} eyebrow="Featured work" title="My projects" intro={String(site.featuredIntro)} />
         <WorkStack />
         <div className="work-more">
           <Link href="/work" className="btn-dark">
             View more projects <ArrowUpRight />
           </Link>
         </div>
+      </Band>
+
+      {/* What I do */}
+      <Band tone="plain" className="section">
+        <Services index={2} />
+      </Band>
+
+      {/* About me bento */}
+      <Band tone="plain" className="section about2">
+        <div className="about2__head">
+          <Eyebrow index={3}>About me</Eyebrow>
+          <SplitText text="Know me better" className="t-h2" />
+        </div>
+        <AboutBento />
+        <div style={{ height: 48 }} />
+        <CtaRow href="/about" label="More about me" note="Currently designing for a multilingual AI platform under AICTE." />
       </Band>
 
       {/* Expertise (tools) */}

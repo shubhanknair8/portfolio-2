@@ -11,7 +11,7 @@ export const purepick: CaseStudy = {
   slug: "purepick",
   title: "PurePick",
   ready: true,
-  cover: "/images/purepick/cover-v2.jpg",
+  cover: "/images/purepick/cover-v2-soft.jpg",
   summary:
     "A concept app that helps shoppers check fruit for chemical adulteration with their phone camera: point, tap, and get a clear safe, caution or unsafe answer while still at the stall.",
   outcomeLine: "Scan your fruit. Eat safe.",

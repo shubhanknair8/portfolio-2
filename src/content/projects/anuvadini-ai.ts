@@ -9,7 +9,7 @@ export const anuvadini: CaseStudy = {
   slug: "anuvadini-ai",
   title: "Hyped Messenger",
   ready: true,
-  cover: "/images/hyped/cover-v4.jpg",
+  cover: "/images/hyped/cover-v4-soft.jpg",
   summary:
     "Hyped Messenger (Hyped Samvadini) is a homegrown Indian alternative to WhatsApp, built under Anuvadini AI (AICTE) and live on Android and iOS. Alongside chats and calls it brings an SOS button, guest and emergency chats, offline games and the wider Anuvadini toolkit into one app. I design product flows and screens as part of the team, and the work is ongoing.",
   outcomeLine: "Designing an Indian messenger that does more than chat: calls, safety, games and multilingual tools in one place.",

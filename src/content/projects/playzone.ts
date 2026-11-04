@@ -9,7 +9,7 @@ export const playzone: CaseStudy = {
   slug: "playzone",
   title: "PlayZone",
   ready: true,
-  cover: "/images/playzone/cover-v2.jpg",
+  cover: "/images/playzone/cover-v2-soft.jpg",
   summary:
     "A mobile app that helps people in Indian cities like Jaipur discover sports facilities, book slots without phone calls, and find people to play with.",
   outcomeLine: "Simplifying access to sports facilities and building active communities.",
