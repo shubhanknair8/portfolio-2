@@ -1211,3 +1211,6 @@ html[data-motion="off"] .intro-curtain { display: none; }
 .hero5__word { color: inherit; }
 .hero5__inner { max-width: 1480px; padding-left: clamp(24px, 5vw, 88px); padding-right: clamp(24px, 4vw, 72px); gap: clamp(56px, 8vw, 140px); }
 @media (max-width: 809.98px) { .hero5__inner { gap: 40px; } }
+/* Writing rows: room inside the hover panel on both sides */
+.writing__item { padding: 30px 32px; }
+@media (max-width: 809.98px) { .writing__item { padding: 22px 18px; } }

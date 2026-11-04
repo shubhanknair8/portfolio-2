@@ -6,6 +6,7 @@ import "./redesign.css";
 import "./stack.css";
 import "./casestudy.css";
 import "./contact.css";
+import "./theme.css";
 
 
 export const metadata: Metadata = {
@@ -27,10 +28,16 @@ export const metadata: Metadata = {
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" data-theme="dark" suppressHydrationWarning>
       <head>
         {/* Enables scroll-reveal start states only when JS runs, so content never hides without it */}
         <script dangerouslySetInnerHTML={{ __html: "document.documentElement.classList.add('js')" }} />
+        {/* Theme before first paint: saved choice, otherwise dark */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: "try{var t=localStorage.getItem('theme');document.documentElement.dataset.theme=(t==='light'||t==='dark')?t:'dark'}catch(e){document.documentElement.dataset.theme='dark'}",
+          }}
+        />
       </head>
       <body id="top">
         <div className="progress" aria-hidden />

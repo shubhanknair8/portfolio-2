@@ -1,0 +1,121 @@
+/* ==================================================================
+   Themes. Dark is the default; the toggle in the header switches to light
+   (the original palette). Layout, type and motion are identical in both.
+   ================================================================== */
+
+/* Tokens that differ between themes (light values = the original design) */
+:root {
+  --word-1: #a8481a; /* Convert */
+  --word-2: #2c5ba8; /* Work */
+  --word-3: #2e7346; /* Scale */
+  --on-ink: #fff;    /* text on an ink-coloured button */
+  --glass: rgba(255, 255, 255, 0.72);
+  --shot-bg: #e9e4d8;
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #121211;
+  --bg-hero: #191816;
+  --ink: #eeebe4;
+  --gray: #a8a296;        /* 7.4:1 on bg */
+  --gray-dark: #cbc6bb;
+  --line: #34322d;
+  --card: #1d1c19;
+  --media: #0e0e0d;
+  --dark: #0a0a09;        /* "dark" bands sit a step darker than the page */
+  --dark-line: #26241f;
+  --dark-2: #1b1a17;
+  --gray-on-dark: #a8a296;
+  --todo: #e59a72;
+  --todo-on-dark: #e59a72;
+  --accent: #e2875a;
+  --blue: #7ea3e8;
+  --green: #5fbf82;
+  --word-1: #ef8a57;
+  --word-2: #7ea3e8;
+  --word-3: #67c98b;
+  --on-ink: #121211;
+  --glass: rgba(29, 28, 25, 0.78);
+  --shot-bg: #1f1e1b;
+}
+
+/* Smooth switch between themes */
+html.theme-anim, html.theme-anim * { transition: background-color 0.35s ease, border-color 0.35s ease, color 0.35s ease !important; }
+
+/* ---------- Theme toggle button ---------- */
+.theme-toggle { display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%; border: 1px solid var(--line); background: var(--card); color: var(--ink); cursor: pointer; transition: transform 0.4s cubic-bezier(0.2, 0.7, 0.2, 1), background-color 0.3s ease; }
+.theme-toggle:hover { transform: rotate(-20deg); }
+.theme-toggle:focus-visible { outline: 2px solid var(--ink); outline-offset: 2px; }
+.header3__theme { margin-left: 6px; }
+
+/* ---------- Things that used fixed light colours ---------- */
+.header3__pill { background: var(--glass); }
+.header3__contact:hover, .header3__contact[aria-current="page"] { color: var(--on-ink); }
+.hero5__cta { color: var(--on-ink); }
+.dd { color: var(--ink); }
+
+:root[data-theme="dark"] .header3 { background: var(--bg); }
+:root[data-theme="dark"] .header3__pill { box-shadow: 0 10px 30px -18px rgba(0, 0, 0, 0.8); }
+:root[data-theme="dark"] .hero5__card { background: #24231f; box-shadow: 0 30px 60px -30px rgba(0, 0, 0, 0.9); }
+:root[data-theme="dark"] .hero5__pill, :root[data-theme="dark"] .hero5__cta { box-shadow: 0 18px 30px -16px rgba(0, 0, 0, 0.8); }
+:root[data-theme="dark"] .band--hero { background-color: var(--bg-hero); }
+:root[data-theme="dark"] .card__sketch { background: #1d1c19; }
+:root[data-theme="dark"] .bento__projects { background: linear-gradient(135deg, var(--card), #18261d); }
+:root[data-theme="dark"] .laurel { color: #d6a64e; }
+:root[data-theme="dark"] .cursor--b { color: #c58ad8; }
+:root[data-theme="dark"] .stack__go { background: var(--ink); border-color: var(--ink); color: var(--on-ink); }
+:root[data-theme="dark"] .tool-card { background: var(--dark-2); }
+:root[data-theme="dark"] .footer2, :root[data-theme="dark"] .expertise { border-top: 1px solid var(--dark-line); }
+
+/* Case studies */
+:root[data-theme="dark"] .cs2-hero { background: var(--bg-hero); }
+:root[data-theme="dark"] .cs2-callout--peach { background: #2a1d16; border-color: #4a3022; }
+:root[data-theme="dark"] .cs2-callout--mint { background: #16241b; border-color: #26402e; }
+:root[data-theme="dark"] .cs2-persona { background: #211d2e; }
+:root[data-theme="dark"] .cs2-card--blue { background: #17202f; border-color: #26344d; }
+:root[data-theme="dark"] .cs2-journey--bad { background: #2a1a17; border-color: #4a2c26; }
+:root[data-theme="dark"] .cs2-journey--good { background: #16241b; border-color: #26402e; }
+:root[data-theme="dark"] .cs2-screen__img { background: var(--shot-bg); }
+:root[data-theme="dark"] .cs2-rejected__shot { border-color: #3a3833; }
+
+/* Contact page tiles: keep their colours but deepen them for dark */
+:root[data-theme="dark"] .ccard__icon { background: color-mix(in srgb, var(--tint) 18%, #1d1c19); color: color-mix(in srgb, var(--tint) 85%, #fff); }
+:root[data-theme="dark"] .ccard:hover, :root[data-theme="dark"] .ccard:focus-visible { box-shadow: 0 18px 36px -24px rgba(0, 0, 0, 0.9); }
+:root[data-theme="dark"] .ccard:hover .ccard__go { color: color-mix(in srgb, var(--tint) 85%, #fff); }
+
+/* Work page / chips / misc surfaces */
+:root[data-theme="dark"] .work-tile__badge { background: rgba(18, 18, 17, 0.7); }
+:root[data-theme="dark"] ::selection { background: var(--ink); color: var(--bg); }
+
+/* "What I do" cards: in dark mode the hover wipe is a subtle white instead of black */
+:root[data-theme="dark"] .svc::before { background: var(--hover-white); }
+:root[data-theme="dark"] .svc:hover .t-h3, :root[data-theme="dark"] .svc:hover .svc__icon { color: #fff; }
+:root[data-theme="dark"] .svc:hover .t-body { color: var(--gray-dark); }
+
+/* ------------------------------------------------------------------
+   Dark mode: every hover uses the same subtle white
+   ------------------------------------------------------------------ */
+:root[data-theme="dark"] { --hover-white: rgba(255, 255, 255, 0.07); }
+:root[data-theme="dark"] .service:hover,
+:root[data-theme="dark"] .pill-link:hover,
+:root[data-theme="dark"] .motion-toggle:hover,
+:root[data-theme="dark"] .writing__item:hover,
+:root[data-theme="dark"] .header3__link:hover,
+:root[data-theme="dark"] .header3__link[aria-current="page"],
+:root[data-theme="dark"] .header2__link:hover,
+:root[data-theme="dark"] .kit__chip--more:hover,
+:root[data-theme="dark"] .theme-toggle:hover,
+:root[data-theme="dark"] .hero2__stat:hover { background: var(--hover-white); }
+:root[data-theme="dark"] .ccard:hover, :root[data-theme="dark"] .ccard:focus-visible { background: var(--hover-white); }
+:root[data-theme="dark"] .header3__contact:hover, :root[data-theme="dark"] .header3__contact[aria-current="page"] { background: var(--hover-white); border-color: var(--line); color: var(--ink); }
+:root[data-theme="dark"] .btn-dark:hover { background: #fff; }
+/* Tool cards: subtle white wipe instead of the colour fill; the tool's mark still grows in faintly */
+:root[data-theme="dark"] .tool-card::before { background: var(--hover-white); }
+:root[data-theme="dark"] .tool-card:hover .t-h3 { color: #fff; }
+:root[data-theme="dark"] .tool-card:hover .t-body { color: var(--gray-dark); }
+:root[data-theme="dark"] .tool-card__bg { color: #fff; }
+:root[data-theme="dark"] .tool-card:hover .tool-card__bg { opacity: 0.06; }
+:root[data-theme="dark"] .tool-card:hover { border-color: var(--line); }
+:root[data-theme="dark"] .tool-card:hover .tool-stack__item, :root[data-theme="dark"] .tool-card:hover .tool-stack__more { border-color: #2a2926; }
+:root[data-theme="dark"] .tool-card:hover .tool-stack__more { background: #3a3833; }

@@ -6,6 +6,7 @@ import { useEffect, useRef, useState } from "react";
 import { nav, site } from "@/content/site";
 import { DotsIcon } from "./bits";
 import { NavList } from "./NavList";
+import { ThemeToggle } from "./ThemeToggle";
 
 export function Header() {
   const [open, setOpen] = useState(false);
@@ -71,6 +72,7 @@ export function Header() {
             ))}
           </ul>
         </nav>
+        <ThemeToggle className="header3__theme" />
         {contact && (
           <Link href={contact.href} className="header3__contact" aria-current={path === contact.href ? "page" : undefined}>
             {contact.label}
