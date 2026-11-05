@@ -169,3 +169,18 @@ a.stack__card:hover .stack__go { background: var(--accent); color: #fff; border-
 /* Doubled */
 .work-band + .band { padding-top: 128px; }
 @media (max-width: 809.98px) { .work-band + .band { padding-top: 96px; } }
+
+/* Roomier gaps between all sections */
+.section { padding-top: 128px; padding-bottom: 128px; }
+.hero5 .hero5__inner { padding-bottom: 96px; }
+.work-band { padding-top: 96px; }
+.work-band { padding-bottom: 0; }
+.work-band + .band { padding-top: 128px; }
+.expertise { padding-top: 136px; padding-bottom: 128px; }
+@media (max-width: 809.98px) {
+  .section { padding-top: 80px; padding-bottom: 80px; }
+  .hero5 .hero5__inner { padding-bottom: 64px; }
+  .work-band { padding-top: 64px; padding-bottom: 0; }
+  .work-band + .band { padding-top: 96px; }
+  .expertise { padding-top: 88px; padding-bottom: 80px; }
+}
