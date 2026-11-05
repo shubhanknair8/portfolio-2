@@ -8,7 +8,7 @@ const ease = (t: number) => (t < 0.5 ? 4 * t * t * t : 1 - Math.pow(-2 * t + 2, 
  * Scroll animation: the fanned covers in the hero drop down as you scroll, straighten out and
  * land exactly on the first card of the "My projects" stack. When they land, the real stack
  * takes over (it works as before). Each card falls slightly after the one above it.
- * Off on phones, for reduced motion and when motion is paused: the cards stay put.
+ * Off for reduced motion, when motion is paused, and on phones where the card stack is hidden.
  */
 export function HeroCardsFall() {
   const ref = useRef<HTMLSpanElement>(null);
@@ -19,7 +19,6 @@ export function HeroCardsFall() {
     if (!hero || !stack || !target) return;
     const cards = Array.from(hero.querySelectorAll<HTMLElement>(".hero5__card"));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
-    const desktop = window.matchMedia("(min-width: 810px)");
 
     type Box = { x: number; y: number; w: number; h: number };
     let bases: Box[] = [];
@@ -38,7 +37,8 @@ export function HeroCardsFall() {
     let frame = 0;
     const update = () => {
       frame = 0;
-      const off = reduce.matches || !desktop.matches || document.documentElement.dataset.motion === "off";
+      const hidden = !cards.length || cards[0].offsetParent === null; // card stack hidden (phones)
+      const off = hidden || reduce.matches || document.documentElement.dataset.motion === "off";
       if (off) {
         cards.forEach((c) => (c.style.transform = ""));
         hero.classList.remove("is-falling", "is-landed");

@@ -1,0 +1,111 @@
+/* ==================================================================
+   Phones (< 810px): same design and motion as the laptop, scaled down.
+   Loaded last so it wins over the earlier mobile rules.
+   ================================================================== */
+@media (max-width: 809.98px) {
+  :root { --pad: 22px; }
+
+  /* ---------- Header: show "Available for work" text, tighter cells ---------- */
+  .header2__bar { width: 100%; max-width: none; border-left: 0; border-right: 0; }
+  .header2__cell { padding: 0 12px; }
+  .header2__logo { font-size: 15px; padding-left: 16px; }
+  .header2__status { font-size: 12px; gap: 7px; padding: 0 10px; letter-spacing: -0.01em; }
+  .header2__themecell { padding: 0 8px; }
+  .header2__themecell .theme-toggle { width: 32px; height: 32px; }
+  .header2__themecell .theme-toggle svg { width: 16px; height: 16px; }
+  .header2__menu { padding: 0 14px; }
+  .header2__menu svg { height: 26px; width: auto; }
+
+  /* ---------- Hero ---------- */
+  .hero5__inner { padding: 36px var(--pad) 56px; gap: 36px; }
+  .hero5__pill { font-size: 13px; padding: 7px 14px 7px 11px; gap: 9px; }
+  .hero5__title { margin-top: 22px; font-size: clamp(34px, 9.6vw, 44px); }
+  .hero5__intro { margin-top: 20px; font-size: 16px; }
+  .hero5__cta { margin-top: 26px; padding: 13px 22px; gap: 12px; font-size: 15px; }
+  .hero5__cards { max-width: 330px; }
+  .hero5__card { border-radius: 12px; }
+
+  /* ---------- Buttons and CTAs ---------- */
+  .btn-dark { padding: 11px 16px; font-size: 14px; }
+  .cta-row__link { font-size: 15px; }
+  .big-mail { font-size: clamp(20px, 6.4vw, 28px); }
+  .pill-link { padding: 8px 12px; font-size: 13px; }
+  .footer2__title { font-size: clamp(30px, 8.6vw, 38px); }
+  .footer2__link { font-size: 18px; padding: 10px 0; }
+  .motion-toggle { font-size: 12px; }
+
+  /* ---------- Projects: smaller cards that pin and stack like on the laptop, ribbons visible ---------- */
+  .stack { padding-top: 8px; }
+  .stack__item { position: sticky; top: calc(var(--head-h) + 3vh + var(--i) * 10px); margin-bottom: 18vh; padding: 0; }
+  .stack::after { height: 10vh; }
+  .stack__card { width: 86%; aspect-ratio: 16 / 11; border-radius: 12px; }
+  .stack__body { padding: 14px 16px; grid-template-columns: 1fr auto; column-gap: 12px; }
+  .stack__go { grid-column: 2; grid-row: 1 / span 3; margin: 0; width: 36px; height: 36px; }
+  .stack__title { font-size: 20px; }
+  .stack__kind { font-size: 12px; margin-top: 4px; }
+  .stack__tags { display: none; }
+  .ribbon { height: 40px; top: -20px; }
+  .ribbon + .ribbon { top: -20px; }
+  .ribbon__item { font-size: 17px; gap: 12px; padding-right: 12px; }
+  .ribbon__mark { width: 8px; height: 14px; }
+
+  /* ---------- Illustrations ---------- */
+  .dd-wrap { max-width: 250px; }
+  .contact2__art { max-width: 300px; margin-left: auto; margin-right: auto; }
+  .bento__portrait { max-height: 360px; }
+  .tool-card__icon, .tool-stack { margin-bottom: 18px; }
+  .tool-card { padding: 22px 20px 28px; }
+
+  /* ---------- Contact rows ---------- */
+  .ccard { grid-template-columns: 44px 1fr 28px; gap: 14px; padding: 16px 14px; }
+  .ccard__icon { width: 44px; height: 44px; border-radius: 12px; }
+  .ccard__label { font-size: 17px; }
+  .ccard__value { font-size: 14px; }
+
+  /* ---------- Case study pages: more room between text and the edges ---------- */
+  .cs2 .gridlines { display: none; }
+  .cs2-hero__main { padding: 40px 0 28px; }
+  .cs2-hero__title { font-size: clamp(34px, 10vw, 44px); }
+  .cs2-meta { padding: 24px 0 32px; grid-template-columns: 1fr 1fr; gap: 18px 16px; }
+  .cs2-body { padding-top: 32px; padding-bottom: 64px; }
+  .cs2-content { gap: 52px; }
+  .cs2-sec__title { font-size: 24px; }
+  .cs2-lead { font-size: 17px; }
+  .cs2-p { font-size: 16px; }
+  .cs2-card, .cs2-callout, .cs2-persona, .cs2-rejected, .cs2-stat { padding: 18px 18px; }
+  .cs2-screen__img { padding: 10px; border-radius: 10px; }
+  .cs2-rejected ul.cs2-rejected__grid { grid-template-columns: 1fr 1fr; gap: 12px; }
+}
+
+/* ==================================================================
+   Touch screens: no hover states. A tap is either the normal state
+   or a click, so hover fills, lifts and wipes are switched off.
+   ================================================================== */
+@media (hover: none) {
+  .svc::before, .tool-card::before { display: none; }
+  .svc:hover .t-h3, .svc:hover .svc__icon, .svc:hover .t-body,
+  .tool-card:hover .t-h3, .tool-card:hover .t-body { color: inherit; }
+  .tool-card__bg { display: none; }
+  .tool-card:hover, a.stack__card:hover, .card:hover, .ccard:hover, .hero5__cta:hover, .btn-dark:hover { transform: none; }
+  .tool-card:hover .tool-stack__item, .tool-card:hover .tool-stack__more { transform: none; border-color: var(--dark-2); }
+  .tool-card:hover .tool-stack__more { background: #3a3732; }
+  a.stack__card:hover .stack__media img { transform: none; }
+  a.stack__card:hover .stack__go { background: #fff; color: var(--ink); border-color: #fff; transform: none; }
+  .header2__link:hover, .header2__status:hover, .writing__item:hover, .ccard:hover, .pill-link:hover,
+  .motion-toggle:hover, .kit__chip--more:hover, .theme-toggle:hover, .service:hover { background: transparent; }
+  .ccard:hover { box-shadow: none; }
+  .ccard:hover .ccard__go, .footer2__link:hover svg, .hero5__cta:hover svg, .cta-row__link:hover .pixel, .social-icon:hover { transform: none; }
+  .theme-toggle:hover { transform: none; }
+  .hero5:not(.is-falling):not(.is-landed) .hero5__cards:hover .hero5__card { transform: translate(var(--x), var(--y)) rotate(var(--r)); }
+  .link-underline:hover { background-size: 0 1px; }
+}
+
+/* Phones: no project-card stack in the first screen; smaller doodle sitting to the right of the "What I do" heading */
+@media (max-width: 809.98px) {
+  .hero5__cards { display: none; }
+  .hero5__inner { min-height: 0; padding-bottom: 48px; }
+  .services-head { display: grid; grid-template-columns: 1fr 120px; align-items: end; gap: 14px; }
+  .services-head .dd-wrap { width: 120px; max-width: 120px; justify-self: end; margin: 0; }
+  .services-head__title { font-size: clamp(22px, 6.4vw, 28px); }
+}
+@media (max-width: 809.98px) { .stack::after { height: 0; } }

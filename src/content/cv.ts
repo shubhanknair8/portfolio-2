@@ -32,7 +32,7 @@ export type Work = {
 };
 
 export const profile =
-  "UI/UX and Product Designer across AI, BFSI, fashion-tech, insurance, mental health and sports-tech. I turn complex problems into clear, accessible experiences, from research and information architecture to production-ready prototypes.";
+  "UI/UX and Product Designer across, BFSI, fashion-tech, insurance, mental health and sports-tech. I turn complex problems into clear, accessible experiences, from research and information architecture to production-ready prototypes.";
 
 export const domains = ["AI", "BFSI", "Fashion-tech", "Insurance", "Mental health", "Sports-tech"];
 
@@ -99,7 +99,7 @@ export const work: Work[] = [
     featured: true,
     live: true,
     slug: "the-f-word-ai",
-    cover: "/images/the-f-word-ai/cover-v3-soft.jpg",
+    cover: "/images/the-f-word-ai/cover-v3-soft2.jpg",
     tile: "/images/the-f-word-ai/cover-square.jpg",
     kind: "AI fashion product development platform",
     tags: ["AI", "Fashion-tech", "Web"],

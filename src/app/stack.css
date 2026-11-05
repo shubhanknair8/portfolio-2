@@ -111,3 +111,61 @@ a.stack__card:hover .stack__go { background: var(--accent); color: #fff; border-
   .stack__go { grid-column: 1; grid-row: auto; margin-top: 14px; width: 44px; height: 44px; }
   .stack__desc { display: none; }
 }
+
+/* Less empty space between the last project card, "View more projects" and the next section */
+.stack__item:last-child { margin-bottom: 8vh; }
+.stack::after { height: 0; }
+.work-more { margin-top: 8px; }
+.work-band { padding-bottom: 56px; }
+.work-band + .band { padding-top: 64px; }
+@media (max-width: 809.98px) {
+  .stack__item:last-child { margin-bottom: 6vh; }
+  .work-band { padding-bottom: 40px; }
+  .work-band + .band { padding-top: 48px; }
+}
+
+/* Tighter still: about 48px above and about 56px below "View more projects" */
+.stack__item:last-child { margin-bottom: 0; }
+.work-band .work-more { margin-top: 48px; }
+.work-band { padding-bottom: 24px; }
+.work-band + .band { padding-top: 32px; }
+@media (max-width: 809.98px) {
+  .stack__item:last-child { margin-bottom: 0; }
+  .work-band .work-more { margin-top: 40px; }
+  .work-band { padding-bottom: 20px; }
+  .work-band + .band { padding-top: 28px; }
+}
+
+/* About 20px above and below "View more projects" */
+.work-band .work-more { margin-top: 20px; }
+.work-band { padding-bottom: 0; }
+.work-band + .band { padding-top: 20px; }
+@media (max-width: 809.98px) {
+  .work-band .work-more { margin-top: 20px; }
+  .work-band { padding-bottom: 0; }
+  .work-band + .band { padding-top: 20px; }
+}
+
+/* Tighter top: less space from the hero CTA to the "My projects" heading, and from the heading to the stack */
+.hero5 .hero5__inner { min-height: 0; padding-bottom: 48px; }
+.work-band { padding-top: 40px; }
+.work-band .section-head { margin-bottom: 24px; }
+.stack { padding-top: 0; }
+@media (max-width: 809.98px) {
+  .hero5 .hero5__inner { padding-bottom: 32px; }
+  .work-band { padding-top: 28px; }
+  .work-band .section-head { margin-bottom: 20px; }
+}
+/* "What I do" heading starts at the top of its row (not centred against the tall doodle), so it sits right under the CTA */
+.work-band + .band .services-head { align-items: start; }
+.work-band + .band .services-head > div:first-child { padding-top: 12px; }
+
+/* Match the reference: about 56px between the last project and "View more projects" */
+.work-band .work-more { margin-top: 56px; }
+@media (max-width: 809.98px) { .work-band .work-more { margin-top: 44px; } }
+/* Same breathing room below the CTA as above it */
+.work-band + .band { padding-top: 64px; }
+@media (max-width: 809.98px) { .work-band + .band { padding-top: 48px; } }
+/* Doubled */
+.work-band + .band { padding-top: 128px; }
+@media (max-width: 809.98px) { .work-band + .band { padding-top: 96px; } }

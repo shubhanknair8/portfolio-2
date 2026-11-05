@@ -951,7 +951,7 @@ html[data-motion="off"] .dd .dd__ink path, html[data-motion="off"] .dd .dd__pen,
 .tool-card:hover::before, .tool-card:focus-within::before { transform: scaleY(1); }
 .tool-card .t-h3, .tool-card .t-body { transition: color 0.4s ease 0.1s; }
 .tool-card:hover .t-h3, .tool-card:hover .t-body { color: var(--ink2); }
-.tool-card:hover .tool-card__icon { background: #fff !important; }
+@media (hover: hover) { .tool-card:hover .tool-card__icon { background: #fff !important; } }
 @media (hover: none) { .tool-card::before { display: none; } }
 @media (prefers-reduced-motion: reduce) { .tool-card::before { transition: none; } }
 

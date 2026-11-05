@@ -7,6 +7,7 @@ import "./stack.css";
 import "./casestudy.css";
 import "./contact.css";
 import "./theme.css";
+import "./mobile.css";
 
 
 export const metadata: Metadata = {
@@ -16,13 +17,13 @@ export const metadata: Metadata = {
   ),
   title: { default: "Shubhank Nair | UI/UX & Product Designer", template: "%s · Shubhank Nair" },
   description:
-    "UI/UX and Product Designer across AI, BFSI, fashion-tech, insurance, mental health and sports-tech. Based in Delhi, India.",
+    "UI/UX and Product Designer across, BFSI, fashion-tech, insurance, mental health and sports-tech. Based in Delhi, India.",
   openGraph: {
     type: "website",
     siteName: "Shubhank Nair",
     title: "Shubhank Nair | UI/UX & Product Designer",
     description:
-      "UI/UX and Product Designer across AI, BFSI, fashion-tech, insurance, mental health and sports-tech. Based in Delhi, India.",
+      "UI/UX and Product Designer across, BFSI, fashion-tech, insurance, mental health and sports-tech. Based in Delhi, India.",
   },
 };
 

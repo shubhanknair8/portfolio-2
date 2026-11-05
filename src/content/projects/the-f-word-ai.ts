@@ -9,7 +9,7 @@ export const theFWord: CaseStudy = {
   slug: "the-f-word-ai",
   title: "The F* Word AI",
   ready: true,
-  cover: "/images/the-f-word-ai/cover-v3-soft.jpg",
+  cover: "/images/the-f-word-ai/cover-v3-soft2.jpg",
   summary:
     "AI workflow software that takes fashion brands from live trends to an editable tech pack, 3D fit and launch visuals in one connected product record. As Product Designer my main responsibility was the tech pack experience, alongside the core product design and the garment creation flows.",
   outcomeLine: "Designing the tech pack experience for an AI fashion platform: from garment idea to a factory-ready spec designers can trust.",
