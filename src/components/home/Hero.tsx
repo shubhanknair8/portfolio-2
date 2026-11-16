@@ -1,9 +1,9 @@
 import { profile, work } from "@/content/cv";
 import { getProject } from "@/content/projects";
 import { site } from "@/content/site";
-import { RotatingWord } from "../motion";
 import { ArrowUpRight } from "../site/icons";
 import { HeroCardsFall } from "./HeroCardsFall";
+import { HeroVaporWord } from "./HeroVaporWord";
 
 /** Hero card poses: [rotate, x offset %, y offset %], back to front. */
 const POSES: [number, number, number][] = [
@@ -41,10 +41,10 @@ export function Hero() {
               {site.heroLead} {words.slice(0, -1).join(", ")} and {words[words.length - 1]}.
             </span>
             <span aria-hidden className="hero5__lead">
-              {site.heroLead}
+              I design things
             </span>
-            <span aria-hidden className="hero5__word">
-              <RotatingWord words={site.heroWords} />
+            <span aria-hidden className="hero5__line2">
+              that <HeroVaporWord words={site.heroWords} />
             </span>
           </h1>
           <p className="hero5__intro">

@@ -1214,3 +1214,11 @@ html[data-motion="off"] .intro-curtain { display: none; }
 /* Writing rows: room inside the hover panel on both sides */
 .writing__item { padding: 30px 32px; }
 @media (max-width: 809.98px) { .writing__item { padding: 22px 18px; } }
+
+/* Hero headline on two lines: "I design things" / "that <word>", the word drawn with the vapour effect */
+.hero5__title { display: block; }
+.hero5__lead, .hero5__line2 { display: block; white-space: nowrap; }
+.vapor-word { display: inline-block; position: relative; width: 4.3em; height: 1.08em; vertical-align: -0.2em; }
+.vapor-word > div { position: absolute; inset: 0; }
+.vapor-word canvas { display: block; }
+.vapor-word .rotator { position: absolute; left: 0; bottom: 0.2em; }
