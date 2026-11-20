@@ -35,11 +35,16 @@ export function HeroCardsFall() {
     };
 
     let frame = 0;
+    // Smoothed progress: the cards ease towards the scroll position instead of jumping with it,
+    // so the fall feels slower and softer. Lower SMOOTH = slower follow.
+    const SMOOTH = 0.06;
+    let shown = 0;
     const update = () => {
       frame = 0;
       const hidden = !cards.length || cards[0].offsetParent === null; // card stack hidden (phones)
       const off = hidden || reduce.matches || document.documentElement.dataset.motion === "off";
       if (off) {
+        shown = 0;
         cards.forEach((c) => (c.style.transform = ""));
         hero.classList.remove("is-falling", "is-landed");
         stack.classList.remove("is-waiting");
@@ -47,7 +52,11 @@ export function HeroCardsFall() {
       }
       // Progress: 0 at the top of the page, 1 once the stack's first card is in view.
       const end = Math.max(1, goal.y - window.innerHeight * 0.18);
-      const p = Math.min(Math.max(window.scrollY / end, 0), 1);
+      const want = Math.min(Math.max(window.scrollY / end, 0), 1);
+      shown += (want - shown) * SMOOTH;
+      if (Math.abs(want - shown) < 0.001) shown = want;
+      else frame = requestAnimationFrame(update); // keep easing until it catches up
+      const p = shown;
       const landed = p >= 1;
       hero.classList.toggle("is-falling", p > 0 && !landed);
       hero.classList.toggle("is-landed", landed);
@@ -61,7 +70,7 @@ export function HeroCardsFall() {
         if (!b) return;
         // stagger: the top card (last in DOM) moves first
         const k = cards.length - 1 - i;
-        const t = ease(Math.min(Math.max((p - k * 0.08) / (1 - k * 0.08), 0), 1));
+        const t = ease(Math.min(Math.max((p - k * 0.14) / (1 - k * 0.14), 0), 1));
         const rot = Number(c.dataset.rot || 0);
         const sx = goal.w / b.w;
         const sy = goal.h / b.h;
