@@ -1,0 +1,74 @@
+/* ==================================================================
+   Home "My projects": horizontal scroll section (modelled on vandanar.design)
+   ================================================================== */
+.wscroll { position: relative; background: var(--bg); }
+.wscroll__pin { position: sticky; top: 0; height: 100vh; overflow: hidden; display: flex; flex-direction: column; justify-content: center; }
+.wscroll__count { position: absolute; top: 32px; left: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); display: flex; align-items: center; gap: 18px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); }
+.wscroll__rule { width: 48px; height: 1px; background: currentColor; }
+.wscroll__count span:last-child { margin-left: 10px; font-variant-numeric: tabular-nums; }
+.wscroll__track { display: flex; align-items: center; gap: 8vw; padding: 0 8vw 0 max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); will-change: transform; }
+
+/* Intro panel */
+.wscroll__intro { flex: 0 0 min(30vw, 380px); align-self: center; }
+.wscroll__title { display: grid; font-family: var(--display); font-weight: 400; font-size: clamp(52px, 6vw, 92px); line-height: 0.95; letter-spacing: -0.02em; text-transform: uppercase; }
+.wscroll__lead { margin-top: 28px; font-size: 15px; line-height: 1.55; color: var(--gray-dark); }
+.wscroll__filters { margin-top: 36px; display: grid; justify-items: start; gap: 6px; }
+.wscroll__filters button { display: inline-flex; align-items: baseline; gap: 10px; padding: 4px 0 4px 16px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); position: relative; cursor: pointer; }
+.wscroll__filters button span { font-size: 11px; opacity: 0.7; }
+.wscroll__filters button::before { content: ""; position: absolute; left: 0; top: 50%; width: 5px; height: 5px; margin-top: -2px; background: currentColor; border-radius: 1px; opacity: 0; transition: opacity 0.2s ease; }
+.wscroll__filters button[aria-pressed="true"] { color: var(--ink); }
+.wscroll__filters button[aria-pressed="true"]::before { opacity: 1; }
+.wscroll__hint { margin-top: 40px; display: inline-flex; gap: 12px; font-size: 12px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); }
+.wscroll__hint span { animation: wscroll-nudge 1.6s ease-in-out infinite; }
+@keyframes wscroll-nudge { 50% { transform: translateX(6px); } }
+
+/* Cards */
+.wscroll__card { flex: 0 0 min(52vw, 760px); }
+.wscroll__head { display: flex; align-items: baseline; gap: 14px; margin-bottom: 18px; }
+.wscroll__n { font-size: 12px; color: var(--gray); font-variant-numeric: tabular-nums; }
+.wscroll__name { font-family: var(--display); font-size: clamp(24px, 2.3vw, 34px); letter-spacing: 0.02em; text-transform: uppercase; line-height: 1; }
+.wscroll__status { display: inline-flex; align-items: center; gap: 8px; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); }
+.wscroll__status::before { content: ""; width: 5px; height: 5px; border-radius: 50%; background: var(--green); }
+.wscroll__meta { margin-left: auto; font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--gray); white-space: nowrap; }
+.wscroll__mediaLink { display: block; }
+.wscroll__media { display: block; position: relative; aspect-ratio: 16 / 10; overflow: hidden; background: var(--card); }
+.wscroll__media img { width: 100%; height: 100%; object-fit: cover; display: block; transition: transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+.wscroll__placeholder { position: absolute; inset: 0; display: grid; place-items: center; font-family: var(--display); font-size: 40px; text-transform: uppercase; color: var(--gray); }
+.wscroll__foot { margin-top: 18px; display: flex; align-items: flex-start; justify-content: space-between; gap: 32px; }
+.wscroll__desc { max-width: 480px; font-size: 15px; line-height: 1.5; color: var(--gray-dark); }
+.wscroll__cta { flex-shrink: 0; display: inline-flex; align-items: center; gap: 10px; padding-bottom: 4px; border-bottom: 1px solid var(--line); font-size: 11px; letter-spacing: 0.12em; text-transform: uppercase; color: var(--ink); white-space: nowrap; transition: border-color 0.3s ease; }
+.wscroll__end { flex: 0 0 1px; }
+
+/* Progress line */
+.wscroll__bar { position: absolute; left: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); right: max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); bottom: 32px; height: 1px; background: var(--line); }
+.wscroll__bar span { position: absolute; inset: 0; background: var(--ink); transform-origin: 0 50%; transform: scaleX(0.02); }
+
+@media (hover: hover) {
+  .wscroll__card:hover .wscroll__media img { transform: scale(1.035); }
+  .wscroll__cta:hover { border-color: var(--ink); }
+  .wscroll__filters button:hover { color: var(--ink); }
+}
+
+/* Phones, reduced motion, motion paused: plain vertical list */
+@media (max-width: 809.98px) {
+  .wscroll__pin { position: static; height: auto; overflow: visible; display: block; padding: 0 var(--pad); }
+  .wscroll__count { position: static; margin-bottom: 20px; }
+  .wscroll__track { display: grid; gap: 56px; padding: 0; transform: none !important; }
+  .wscroll__intro { flex: none; }
+  .wscroll__title { font-size: clamp(42px, 13vw, 56px); }
+  .wscroll__filters { display: flex; flex-wrap: wrap; gap: 4px 14px; margin-top: 24px; }
+  .wscroll__hint, .wscroll__bar, .wscroll__end { display: none; }
+  .wscroll__name { font-size: 22px; }
+  .wscroll__meta { display: none; }
+  .wscroll__foot { flex-direction: column; gap: 12px; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .wscroll__pin { position: static; height: auto; overflow: visible; display: block; padding: 64px 0; }
+  .wscroll__count { position: static; margin: 0 0 24px max(var(--pad), calc((100vw - var(--max)) / 2 + var(--pad))); }
+  .wscroll__track { overflow-x: auto; transform: none !important; }
+  .wscroll__hint span { animation: none; }
+}
+html[data-motion="off"] .wscroll__hint span { animation-play-state: paused; }
+/* While the hero cards fall, the first project image waits, then takes over */
+.wscroll.is-waiting .wscroll__card:first-of-type .wscroll__media img { opacity: 0; }
+.wscroll .wscroll__card:first-of-type .wscroll__media img { transition: opacity 0.2s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }

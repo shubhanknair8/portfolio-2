@@ -22,6 +22,8 @@ export type Work = {
   live?: boolean;
   /** Shown in the home page stack (max 3). The rest are on /work. */
   featured?: boolean;
+  /** Filter groups on the home page projects section. */
+  areas?: string[];
   /** Short labels shown as chips and on the scrolling ribbons. */
   tags?: string[];
   /** Home page card image (UI screens). Case studies use the project cover. Path under /public. */
@@ -82,6 +84,7 @@ export const experience: Role[] = [
 export const work: Work[] = [
   {
     title: "Hyped Messenger",
+    areas: ["Mobile app", "Live product"],
     featured: true,
     live: true,
     slug: "anuvadini-ai",
@@ -96,6 +99,7 @@ export const work: Work[] = [
   },
   {
     title: "The F* Word AI",
+    areas: ["Web", "AI", "Live product"],
     featured: true,
     live: true,
     slug: "the-f-word-ai",
@@ -111,6 +115,7 @@ export const work: Work[] = [
   },
   {
     title: "YatraSure",
+    areas: ["Mobile app"],
     featured: true,
     slug: "yatrasure",
     cover: "/images/yatrasure/cover-v2-soft.jpg",
@@ -124,6 +129,7 @@ export const work: Work[] = [
   },
   {
     title: "PurePick",
+    areas: ["Mobile app", "AI"],
     slug: "purepick",
     cover: "/images/purepick/cover-v2-soft.jpg",
     tile: "/images/purepick/cover-square.jpg",
@@ -136,6 +142,7 @@ export const work: Work[] = [
   },
   {
     title: "PlayZone",
+    areas: ["Mobile app"],
     slug: "playzone",
     cover: "/images/playzone/cover-v2-soft.jpg",
     tile: "/images/playzone/cover-square.jpg",
@@ -148,6 +155,7 @@ export const work: Work[] = [
   },
   {
     title: "My Haven",
+    areas: ["Mobile app"],
     slug: "my-haven",
     tile: "/images/my-haven/cover-square.jpg",
     kind: "Mental health support app",

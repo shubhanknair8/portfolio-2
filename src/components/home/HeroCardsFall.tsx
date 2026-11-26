@@ -14,8 +14,8 @@ export function HeroCardsFall() {
   const ref = useRef<HTMLSpanElement>(null);
   useEffect(() => {
     const hero = ref.current?.closest<HTMLElement>(".hero5");
-    const stack = document.querySelector<HTMLElement>(".stack");
-    const target = stack?.querySelector<HTMLElement>(".stack__item .stack__media");
+    const stack = document.querySelector<HTMLElement>(".wscroll");
+    const target = stack?.querySelector<HTMLElement>(".wscroll__card .wscroll__media");
     if (!hero || !stack || !target) return;
     const cards = Array.from(hero.querySelectorAll<HTMLElement>(".hero5__card"));
     const reduce = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -89,7 +89,7 @@ export function HeroCardsFall() {
 
     measure();
     update();
-    const imgs = Array.from(document.querySelectorAll<HTMLImageElement>(".hero5__card img, .stack__media img"));
+    const imgs = Array.from(document.querySelectorAll<HTMLImageElement>(".hero5__card img, .wscroll__media img"));
     imgs.forEach((im) => im.complete || im.addEventListener("load", onResize, { once: true }));
     window.addEventListener("scroll", onScroll, { passive: true });
     window.addEventListener("resize", onResize);

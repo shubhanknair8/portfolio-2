@@ -7,6 +7,7 @@ import "./stack.css";
 import "./casestudy.css";
 import "./contact.css";
 import "./theme.css";
+import "./workscroll.css";
 import "./mobile.css";
 
 
