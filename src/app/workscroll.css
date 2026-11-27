@@ -72,3 +72,8 @@ html[data-motion="off"] .wscroll__hint span { animation-play-state: paused; }
 /* While the hero cards fall, the first project image waits, then takes over */
 .wscroll.is-waiting .wscroll__card:first-of-type .wscroll__media img { opacity: 0; }
 .wscroll .wscroll__card:first-of-type .wscroll__media img { transition: opacity 0.2s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+/* While the hero cards fly in, the featured project images wait, then take over */
+.wscroll.is-waiting .wscroll__card:nth-of-type(-n+3) .wscroll__media img { opacity: 0; }
+.wscroll .wscroll__card:nth-of-type(-n+3) .wscroll__media img { transition: opacity 0.2s ease, transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1); }
+/* Square corners on the hero cards, matching the project images */
+.hero5__card { border-radius: 0 !important; }

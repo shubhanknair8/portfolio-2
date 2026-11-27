@@ -184,3 +184,15 @@ a.stack__card:hover .stack__go { background: var(--accent); color: #fff; border-
   .work-band + .band { padding-top: 96px; }
   .expertise { padding-top: 88px; padding-bottom: 80px; }
 }
+
+/* "What I do": smaller doodle, tighter header and gaps around the section */
+.services-head { margin-bottom: 40px; align-items: center; }
+.services-head .dd-wrap { width: 260px; }
+.work-band + .band, .wscroll + .band { padding-top: 64px; }
+.wscroll + .band.section { padding-bottom: 96px; }
+@media (max-width: 1199.98px) { .services-head .dd-wrap { width: 220px; } }
+@media (max-width: 809.98px) {
+  .services-head { margin-bottom: 28px; }
+  .wscroll + .band { padding-top: 48px; }
+  .wscroll + .band.section { padding-bottom: 64px; }
+}
